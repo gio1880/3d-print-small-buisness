@@ -611,6 +611,18 @@
       font-family: var(--display);
     }
 
+    .stock-note {
+      color: var(--lime);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      margin-bottom: 10px;
+    }
+
+    .stock-note.low {
+      color: #ffbe55;
+    }
+
     .card-actions {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -1735,7 +1747,7 @@
 
       <div class="clicker-builder">
         <div class="clicker-controls">
-          <p class="lead">Fidget keychains that <strong>click</strong> — one satisfying button per letter or symbol. Pick a shape, type a name or stack symbols, and choose exactly how many characters it has.</p>
+          <p class="lead">Fidget keychains that <strong>click</strong> — one satisfying button per letter. Pick a shape, type a name, and choose exactly how many letters it has.</p>
 
           <div class="field">
             <label>Layout</label>
@@ -1747,22 +1759,8 @@
           </div>
 
           <div class="field">
-            <label for="clicker-text">Your Letters &amp; Symbols <span class="char-count" data-clicker-count>0 / 12</span></label>
-            <input id="clicker-text" data-clicker-input maxlength="12" placeholder="Type here... e.g. GIO ★" autocomplete="off" />
-          </div>
-
-          <div class="field">
-            <label>Add a Symbol</label>
-            <div class="symbol-row" data-symbol-row>
-              <button class="symbol-btn" type="button" data-symbol="★" aria-label="Add star symbol">★</button>
-              <button class="symbol-btn" type="button" data-symbol="♥" aria-label="Add heart symbol">♥</button>
-              <button class="symbol-btn" type="button" data-symbol="⚡" aria-label="Add lightning symbol">⚡</button>
-              <button class="symbol-btn" type="button" data-symbol="☾" aria-label="Add moon symbol">☾</button>
-              <button class="symbol-btn" type="button" data-symbol="♪" aria-label="Add music note symbol">♪</button>
-              <button class="symbol-btn" type="button" data-symbol="☺" aria-label="Add smiley symbol">☺</button>
-              <button class="symbol-btn" type="button" data-symbol="✦" aria-label="Add sparkle symbol">✦</button>
-              <button class="symbol-btn" type="button" data-symbol="#" aria-label="Add hashtag symbol">#</button>
-            </div>
+            <label for="clicker-text">Your Letters <span class="char-count" data-clicker-count>0 / 12</span></label>
+            <input id="clicker-text" data-clicker-input maxlength="12" placeholder="Type here... e.g. GIO" autocomplete="off" />
           </div>
 
           <div class="field">
@@ -1785,7 +1783,7 @@
           <div class="clicker-summary">
             <div class="clicker-price">
               <span class="amt" data-clicker-price>$0</span>
-              <span class="breakdown">$5 base + $1 per letter or symbol</span>
+              <span class="breakdown">50&cent; per available letter</span>
             </div>
             <button class="btn primary" type="button" data-clicker-add disabled>Add to Cart</button>
           </div>
@@ -1887,7 +1885,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-toggle" type="button" aria-expanded="false">How do custom clickers work?</button>
-        <p class="faq-answer">Each letter or symbol on a clicker is its own clicky button. Pick a shape — a straight row (2–12 buttons), a 2×2 grid (4 buttons), or a 3×3 grid (9 buttons) — then type your text, add symbols, and pick a color. The price updates as you build: $5 base plus $1 per button. Add it to your cart and the exact text, layout, and color come through with your order.</p>
+        <p class="faq-answer">Each available letter on a clicker is its own clicky button and costs 50&cent;. Pick a shape — a straight row (2–12 buttons), a 2×2 grid (4 buttons), or a 3×3 grid (9 buttons) — then type your letters and pick a color. Add it to your cart and the exact text, layout, and color come through with your order.</p>
       </div>
       <div class="faq-item">
         <button class="faq-toggle" type="button" aria-expanded="false">Can I pick colors?</button>
@@ -1902,7 +1900,7 @@
       </div>
       <div class="actions">
         <button class="mini-btn" type="button" data-clear-cart>Clear</button>
-        <a class="btn primary" data-checkout href="mailto:hello@glitchprints.example?subject=3D%20Print%20Order">Checkout</a>
+        <button class="btn primary" type="button" data-checkout>Secure Checkout</button>
       </div>
     </aside>
 
@@ -1975,11 +1973,36 @@
       </div>
     </footer>
   </main>
+  <script src="catalog.js"></script>
   <script>
+    const shopCategories = ['Flexi Dragons', 'Figures & Critters', 'Sculptures & Decor'];
+    const shopGrids = document.querySelectorAll('#shop .product-grid');
+
+    shopCategories.forEach((category, index) => {
+      const products = GLITCH_PRODUCTS.filter(product => product.category === category);
+      shopGrids[index].innerHTML = products.map(product => `
+        <article class="card">
+          <div class="product-img">
+            <img class="product-photo" loading="lazy" src="${product.image}" alt="${product.name} 3D print" />
+          </div>
+          <h3>${product.name}</h3>
+          <p>${product.description}</p>
+          <div class="price">$${(product.price / 100).toFixed(2)}</div>
+          <div class="stock-note ${product.stock <= 2 ? 'low' : ''}">${product.stock} in stock</div>
+          <div class="card-actions">
+            <button class="mini-btn add" type="button" data-add-to-cart data-product-id="${product.id}" data-name="${product.name}" data-price="${product.price / 100}">Add to Cart</button>
+            <button class="mini-btn" type="button" data-details="${product.name}">Details</button>
+          </div>
+        </article>
+      `).join('');
+    });
+
     let cart = [];
     try {
       cart = JSON.parse(localStorage.getItem('gp-cart')) || [];
     } catch (e) { cart = []; }
+    const productById = new Map(GLITCH_PRODUCTS.map(product => [product.id, product]));
+    cart = cart.filter(item => item.id === 'custom-clicker' || productById.has(item.id));
     const cartCount = document.querySelector('.cart-count');
     const cartPanel = document.querySelector('.cart-panel');
     const cartItems = document.querySelector('[data-cart-items]');
@@ -2003,9 +2026,11 @@
 
       if (!cart.length) {
         cartItems.innerHTML = '<p>Your cart is empty.</p>';
-        checkout.href = 'mailto:hello@glitchprints.example?subject=3D%20Print%20Order';
+        checkout.disabled = true;
         return;
       }
+
+      checkout.disabled = false;
 
       const totals = cart.reduce((items, item) => {
         items[item.name] ||= { ...item, qty: 0 };
@@ -2020,10 +2045,6 @@
         </div>
       `).join('');
 
-      const orderLines = Object.values(totals)
-        .map(item => `${item.name} x${item.qty} - from $${item.price * item.qty}`)
-        .join('%0A');
-      checkout.href = `mailto:hello@glitchprints.example?subject=3D%20Print%20Order&body=Hi%20GLITCH%20PRINTS%2C%0A%0AI%27d%20like%20to%20order%3A%0A${orderLines}%0A%0AName%3A%0APickup%20or%20shipping%3A`;
     }
 
     function openRequestForm() {
@@ -2043,6 +2064,7 @@
     document.querySelectorAll('[data-add-to-cart]').forEach(button => {
       button.addEventListener('click', () => {
         cart.push({
+          id: button.dataset.productId,
           name: button.dataset.name,
           price: Number(button.dataset.price)
         });
@@ -2069,6 +2091,35 @@
       cart.length = 0;
       renderCart();
       showToast('Cart cleared.');
+    });
+
+    checkout.addEventListener('click', async () => {
+      if (!cart.length) return;
+      checkout.disabled = true;
+      checkout.textContent = 'Opening checkout...';
+
+      const grouped = new Map();
+      cart.forEach(item => {
+        const key = `${item.id}|${JSON.stringify(item.configuration || {})}`;
+        const current = grouped.get(key) || { id: item.id, quantity: 0, configuration: item.configuration };
+        current.quantity += 1;
+        grouped.set(key, current);
+      });
+
+      try {
+        const response = await fetch('/api/create-checkout-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: Array.from(grouped.values()) })
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Checkout could not be started.');
+        window.location.href = result.url;
+      } catch (error) {
+        showToast(error.message);
+        checkout.disabled = false;
+        checkout.textContent = 'Secure Checkout';
+      }
     });
 
     requestOpen.addEventListener('click', openRequestForm);
@@ -2122,8 +2173,8 @@
     });
 
     /* ---- Custom Clicker builder ---- */
-    const CLICKER_BASE = 5;
-    const CLICKER_PER_CHAR = 1;
+    const CLICKER_BASE = 0;
+    const CLICKER_PER_CHAR = 0.5;
 
     const CLICKER_LAYOUTS = {
       row: { name: 'Straight Row', min: 2, max: 12, cols: 0 },
@@ -2190,7 +2241,7 @@
       }
 
       const price = count ? CLICKER_BASE + count * CLICKER_PER_CHAR : 0;
-      clickerPrice.textContent = `$${price}`;
+      clickerPrice.textContent = `$${price.toFixed(2)}`;
       clickerAdd.disabled = count < layout.min;
       if (count >= layout.min) {
         clickerAdd.textContent = 'Add to Cart';
@@ -2201,7 +2252,10 @@
       }
     }
 
-    clickerInput.addEventListener('input', renderClicker);
+    clickerInput.addEventListener('input', () => {
+      clickerInput.value = clickerInput.value.replace(/[^a-z]/gi, '').toUpperCase();
+      renderClicker();
+    });
 
     document.querySelectorAll('[data-layout]').forEach(button => {
       button.addEventListener('click', () => {
@@ -2246,8 +2300,14 @@
       if (chars.length < layout.min) return;
       const text = chars.join('');
       cart.push({
+        id: 'custom-clicker',
         name: `Custom Clicker "${text.toUpperCase()}" (${clickerColorName}, ${layout.name}, ${chars.length} buttons)`,
-        price: CLICKER_BASE + chars.length * CLICKER_PER_CHAR
+        price: CLICKER_BASE + chars.length * CLICKER_PER_CHAR,
+        configuration: {
+          text: text.toUpperCase(),
+          color: clickerColorName,
+          layout: layout.name
+        }
       });
       renderCart();
       showToast(`Custom Clicker "${text.toUpperCase()}" added to cart.`);
