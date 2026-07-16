@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class Points Store | GLITCH PRINTS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0B0B0F;
+      --cyan: #00E5FF;
+      --magenta: #FF2BD6;
+      --lime: #B6FF00;
+      --white: #F4F4F5;
+      --gray: #8A8F98;
+      --line: rgba(255,255,255,0.14);
+      --card: rgba(255,255,255,0.05);
+      --display: 'Orbitron', 'Space Grotesk', Arial, sans-serif;
+      --body: 'Space Grotesk', Arial, Helvetica, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--body);
+      background: var(--black);
+      color: var(--white);
+      padding: 32px 16px 60px;
+    }
+
+    .sheet {
+      width: min(860px, 100%);
+      margin: 0 auto;
+    }
+
+    .sheet-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      border-bottom: 2px solid var(--magenta);
+      padding-bottom: 18px;
+      margin-bottom: 22px;
+    }
+
+    .logo {
+      font-family: var(--display);
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 1.6rem;
+      line-height: .95;
+    }
+
+    .logo span {
+      display: block;
+      color: var(--magenta);
+      font-size: .58em;
+      letter-spacing: 6px;
+    }
+
+    .sheet-title {
+      text-align: right;
+    }
+
+    .sheet-title h1 {
+      font-family: var(--display);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 1.5rem;
+      color: var(--cyan);
+    }
+
+    .sheet-title p {
+      color: var(--gray);
+      font-size: .82rem;
+      margin-top: 4px;
+    }
+
+    .student-line {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr .7fr;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .student-line .blank {
+      border: 1px solid var(--line);
+      background: var(--card);
+      padding: 10px 12px;
+      font-size: .8rem;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      min-height: 46px;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .intro {
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(0,229,255,.08), rgba(255,43,214,.08));
+      padding: 16px 18px;
+      line-height: 1.65;
+      font-size: .92rem;
+      margin-bottom: 26px;
+    }
+
+    .intro strong { color: var(--lime); }
+
+    h2 {
+      font-family: var(--display);
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-size: 1.02rem;
+      margin: 26px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h2::before {
+      content: "";
+      width: 24px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cyan), var(--magenta));
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 9px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      font-family: var(--display);
+      font-size: .68rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--cyan);
+      background: rgba(0,229,255,.06);
+    }
+
+    .pts {
+      font-family: var(--display);
+      font-weight: 700;
+      color: var(--lime);
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    tr.legendary td {
+      border-color: var(--magenta);
+      background: rgba(255,43,214,.08);
+      font-weight: 700;
+    }
+
+    tr.legendary .pts {
+      color: var(--magenta);
+      font-size: 1.05rem;
+    }
+
+    .prod-cell {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .thumb {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      flex: 0 0 auto;
+      border-radius: 6px;
+      background: rgba(255,255,255,.05);
+      filter: drop-shadow(0 3px 6px rgba(0,0,0,.45));
+    }
+
+    .shape-demos {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      margin: 12px 0 4px;
+    }
+
+    .shape-demo { text-align: center; }
+
+    .shape-demo .lbl {
+      font-size: .6rem;
+      color: var(--gray);
+      margin-top: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: var(--display);
+    }
+
+    .mini-tiles {
+      display: grid;
+      gap: 4px;
+      justify-content: center;
+    }
+
+    .mini-tiles.demo-row { grid-template-columns: repeat(6, 20px); }
+    .mini-tiles.demo-g2 { grid-template-columns: repeat(2, 20px); }
+    .mini-tiles.demo-g3 { grid-template-columns: repeat(3, 20px); }
+
+    .mini-tile {
+      width: 20px;
+      height: 24px;
+      border: 1px solid var(--cyan);
+      border-radius: 4px;
+      display: grid;
+      place-items: center;
+      font-family: var(--display);
+      font-size: .56rem;
+      font-weight: 700;
+      color: var(--cyan);
+      background: rgba(0,229,255,.07);
+      box-shadow: 0 2px 0 rgba(0,0,0,.4);
+    }
+
+    .usd {
+      color: var(--gray);
+      font-size: .78rem;
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .note {
+      color: var(--gray);
+      font-size: .78rem;
+      line-height: 1.55;
+      margin-top: 8px;
+    }
+
+    .clicker-math {
+      border: 1px dashed var(--magenta);
+      background: rgba(255,43,214,.06);
+      padding: 14px 16px;
+      margin-top: 12px;
+      font-size: .9rem;
+      line-height: 1.7;
+    }
+
+    .clicker-math .formula {
+      font-family: var(--display);
+      color: var(--magenta);
+      font-size: .95rem;
+      letter-spacing: .5px;
+    }
+
+    .tally-grid {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .tally-cell {
+      border: 1px solid var(--line);
+      background: var(--card);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      font-size: .62rem;
+      color: rgba(244,244,245,.28);
+      font-family: var(--display);
+    }
+
+    .goal-box {
+      border: 1px solid var(--lime);
+      background: rgba(182,255,0,.05);
+      padding: 16px 18px;
+      margin-top: 12px;
+      line-height: 2.3;
+      font-size: .94rem;
+    }
+
+    .goal-box .write {
+      display: inline-block;
+      min-width: 180px;
+      border-bottom: 1px solid var(--lime);
+    }
+
+    .goal-box .write.short { min-width: 90px; }
+
+    .sheet-foot {
+      margin-top: 30px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: var(--gray);
+      font-size: .76rem;
+    }
+
+    .print-btn {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      font-family: var(--display);
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      background: var(--magenta);
+      color: var(--white);
+      border: 0;
+      padding: 14px 22px;
+      cursor: pointer;
+      box-shadow: 5px 5px 0 var(--cyan);
+      transition: .15s ease;
+    }
+
+    .print-btn:hover {
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px 0 var(--cyan);
+    }
+
+    @media (max-width: 640px) {
+      .two-col { grid-template-columns: 1fr; }
+      .student-line { grid-template-columns: 1fr; }
+      .sheet-title { text-align: left; }
+      .tally-grid { grid-template-columns: repeat(5, 1fr); }
+    }
+
+    /* ---- print: flip to ink-friendly black on white ---- */
+    @media print {
+      :root {
+        --black: #ffffff;
+        --white: #111111;
+        --cyan: #006e7a;
+        --magenta: #a3007f;
+        --lime: #3d7a00;
+        --gray: #555555;
+        --line: #999999;
+        --card: #ffffff;
+      }
+
+      body { padding: 0; background: #fff; }
+      .sheet { width: 100%; }
+      .print-btn { display: none; }
+      .intro { background: #f3f3f3; }
+      th { background: #eeeeee; }
+      .clicker-math { background: #faf3f8; }
+      tr.legendary td { background: #faeaf5; }
+      .thumb { filter: none; background: #f3f3f3; }
+      .mini-tile { background: #eef9fb; box-shadow: none; }
+      .goal-box { background: #f6faee; }
+      .tally-cell { background: #fff; color: #bbb; }
+      h2, .logo, .sheet-title h1 { break-after: avoid; }
+      table, .goal-box, .clicker-math { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+
+    <div class="sheet-head">
+      <div class="logo">GLITCH <span>PRINTS</span></div>
+      <div class="sheet-title">
+        <h1>Class Points Store</h1>
+        <p>Earn points in class · Trade them for 3D prints</p>
+      </div>
+    </div>
+
+    <div class="student-line">
+      <div class="blank">Name</div>
+      <div class="blank">Class / Period</div>
+      <div class="blank">Date</div>
+    </div>
+
+    <div class="intro">
+      Every point you earn in class is worth real stuff at the GLITCH PRINTS store. Small prints take
+      <strong>a few weeks of solid work</strong> to earn. The big prints? Those are <strong>legendary-tier</strong> —
+      only the most relentless point-stackers will ever hold one. Do good work, save up, and cash in for dragons,
+      spirals, spring cats, or a custom clicker with your own letters and symbols.
+    </div>
+
+    <h2>How to Earn Points</h2>
+    <table>
+      <thead>
+        <tr><th>What You Did</th><th style="text-align:right">Points</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Homework turned in complete and on time</td><td class="pts">+5</td></tr>
+        <tr><td>Participating in class discussion</td><td class="pts">+5</td></tr>
+        <tr><td>Helping a classmate understand something</td><td class="pts">+10</td></tr>
+        <tr><td>Winning a class challenge or quiz game</td><td class="pts">+15</td></tr>
+        <tr><td>Perfect week (all work in, no missing assignments)</td><td class="pts">+20</td></tr>
+        <tr><td>Going above and beyond on a project</td><td class="pts">+25</td></tr>
+        <tr><td>Teacher's choice bonus</td><td class="pts">+___</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Your teacher tracks the official total. Points can't go negative and can't be traded between students.</p>
+
+    <h2>What You Can Buy</h2>
+    <div class="two-col">
+      <div>
+        <table>
+          <thead>
+            <tr><th>Print</th><th style="text-align:right">Points</th><th style="text-align:right">Cash&nbsp;Price</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="prod-cell"><img class="thumb" src="assets/prod-mini-dragons.png" alt="Mini flexi dragons" />Mini Flexi Dragons</span></td><td class="pts">100</td><td class="usd">$6</td></tr>
+            <tr><td><span class="prod-cell"><img class="thumb" src="assets/prod-blue-minis.png" alt="Blue mini dragons" />Blue Mini Dragons</span></td><td class="pts">100</td><td class="usd">$6</td></tr>
+            <tr><td><span class="prod-cell"><img class="thumb" src="assets/prod-spring-cats.png" alt="Spring cats" />Spring Cats</span></td><td class="pts">175</td><td class="usd">$10</td></tr>
+            <tr><td><span class="prod-cell"><img class="thumb" src="assets/prod-spiral.png" alt="Spiral sculptures" />Spiral Sculptures</span></td><td class="pts">200</td><td class="usd">$12</td></tr>
+            <tr><td><span class="prod-cell"><img class="thumb" src="assets/flexi-charmander.png" alt="Flexi fire lizard" />Flexi Fire Lizard</span></td><td class="pts">250</td><td class="usd">$14</td></tr>
+            <tr><td><span class="prod-cell"><img class="thumb" src="assets/prod-spiral-galaxy.png" alt="Galaxy spirals" />Galaxy Spirals</span></td><td class="pts">250</td><td class="usd">$14</td></tr>
+            <tr><td><span class="prod-cell"><img class="thumb" src="assets/dragon-crystal.png" alt="Flexi crystal dragon" />Flexi Crystal Dragon</span></td><td class="pts">400</td><td class="usd">$16</td></tr>
+            <tr><td><span class="prod-cell"><img class="thumb" src="assets/prod-flame-dragon.png" alt="Flexi flame dragon" />Flexi Flame Dragon</span></td><td class="pts">400</td><td class="usd">$16</td></tr>
+            <tr><td><span class="prod-cell"><img class="thumb" src="assets/prod-forest-dragon.png" alt="Flexi forest dragon" />Flexi Forest Dragon</span></td><td class="pts">500</td><td class="usd">$18</td></tr>
+            <tr><td><span class="prod-cell"><img class="thumb" src="assets/dragon-shadow.png" alt="Flexi shadow dragons" />Flexi Shadow Dragons</span></td><td class="pts">500</td><td class="usd">$18</td></tr>
+            <tr class="legendary"><td><span class="prod-cell"><img class="thumb" src="assets/prod-grand-dragon.png" alt="Grand flexi dragon" />Grand Flexi Dragon ★ LEGENDARY</span></td><td class="pts">2,000</td><td class="usd">$28</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <table>
+          <thead>
+            <tr><th>Custom Clicker</th><th style="text-align:right">Points</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Straight row — 2 buttons (shortest)</td><td class="pts">120</td></tr>
+            <tr><td>2×2 grid — 4 buttons</td><td class="pts">160</td></tr>
+            <tr><td>3×3 grid — 9 buttons</td><td class="pts">260</td></tr>
+            <tr><td>Straight row — 12 buttons (longest)</td><td class="pts">320</td></tr>
+          </tbody>
+        </table>
+        <div class="shape-demos">
+          <div class="shape-demo">
+            <div class="mini-tiles demo-row">
+              <span class="mini-tile">G</span><span class="mini-tile">L</span><span class="mini-tile">I</span><span class="mini-tile">T</span><span class="mini-tile">C</span><span class="mini-tile">H</span>
+            </div>
+            <div class="lbl">Straight Row</div>
+          </div>
+          <div class="shape-demo">
+            <div class="mini-tiles demo-g2">
+              <span class="mini-tile">G</span><span class="mini-tile">I</span><span class="mini-tile">O</span><span class="mini-tile">★</span>
+            </div>
+            <div class="lbl">2×2 Grid</div>
+          </div>
+          <div class="shape-demo">
+            <div class="mini-tiles demo-g3">
+              <span class="mini-tile">R</span><span class="mini-tile">O</span><span class="mini-tile">B</span><span class="mini-tile">O</span><span class="mini-tile">T</span><span class="mini-tile">S</span><span class="mini-tile">♥</span><span class="mini-tile">★</span><span class="mini-tile">⚡</span>
+            </div>
+            <div class="lbl">3×3 Grid</div>
+          </div>
+        </div>
+        <div class="clicker-math">
+          A clicker is a keychain where <strong>every letter or symbol is its own clicky button</strong>.
+          You pick the shape (straight row of 2–12, 2×2 grid, or 3×3 grid) and the letters.
+          <br /><span class="formula">Points = 80 + (20 × number of buttons)</span>
+          <br />Example: your 5-letter name in a row = 80 + 100 = <strong>180 points</strong>.
+        </div>
+      </div>
+    </div>
+
+    <h2>My Points Tracker</h2>
+    <p class="note" style="margin-top:0">Each box = 5 points earned. Fill in a box every time your teacher gives you 5 points. One full row = 50 points.
+    A completely filled sheet = 300 points. Saving for the Grand Flexi Dragon? That's <strong>seven full sheets</strong>. We told you it was legendary.</p>
+    <div class="tally-grid">
+      <div class="tally-cell">5</div><div class="tally-cell">10</div><div class="tally-cell">15</div><div class="tally-cell">20</div><div class="tally-cell">25</div><div class="tally-cell">30</div><div class="tally-cell">35</div><div class="tally-cell">40</div><div class="tally-cell">45</div><div class="tally-cell">50</div>
+      <div class="tally-cell">55</div><div class="tally-cell">60</div><div class="tally-cell">65</div><div class="tally-cell">70</div><div class="tally-cell">75</div><div class="tally-cell">80</div><div class="tally-cell">85</div><div class="tally-cell">90</div><div class="tally-cell">95</div><div class="tally-cell">100</div>
+      <div class="tally-cell">105</div><div class="tally-cell">110</div><div class="tally-cell">115</div><div class="tally-cell">120</div><div class="tally-cell">125</div><div class="tally-cell">130</div><div class="tally-cell">135</div><div class="tally-cell">140</div><div class="tally-cell">145</div><div class="tally-cell">150</div>
+      <div class="tally-cell">155</div><div class="tally-cell">160</div><div class="tally-cell">165</div><div class="tally-cell">170</div><div class="tally-cell">175</div><div class="tally-cell">180</div><div class="tally-cell">185</div><div class="tally-cell">190</div><div class="tally-cell">195</div><div class="tally-cell">200</div>
+      <div class="tally-cell">205</div><div class="tally-cell">210</div><div class="tally-cell">215</div><div class="tally-cell">220</div><div class="tally-cell">225</div><div class="tally-cell">230</div><div class="tally-cell">235</div><div class="tally-cell">240</div><div class="tally-cell">245</div><div class="tally-cell">250</div>
+      <div class="tally-cell">255</div><div class="tally-cell">260</div><div class="tally-cell">265</div><div class="tally-cell">270</div><div class="tally-cell">275</div><div class="tally-cell">280</div><div class="tally-cell">285</div><div class="tally-cell">290</div><div class="tally-cell">295</div><div class="tally-cell">300</div>
+    </div>
+
+    <h2>My Goal</h2>
+    <div class="goal-box">
+      I am saving for: <span class="write">&nbsp;</span> which costs <span class="write short">&nbsp;</span> points.
+      <br />I have <span class="write short">&nbsp;</span> points now, so I still need <span class="write short">&nbsp;</span> points.
+      <br />If a clicker: my letters/symbols are <span class="write">&nbsp;</span> in a
+      <span class="write short">&nbsp;</span> layout (row / 2×2 / 3×3).
+    </div>
+
+    <div class="sheet-foot">
+      <span>GLITCH PRINTS · a fundraiser by Premium Rice Cookers, FTC Robotics · Flushing, Queens NYC</span>
+      <span>Shop &amp; clicker builder: see the class website</span>
+    </div>
+
+  </div>
+
+  <button class="print-btn" type="button" onclick="window.print()">⎙ Print Worksheet</button>
+</body>
+</html>

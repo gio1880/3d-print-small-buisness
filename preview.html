@@ -1,0 +1,2205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GLITCH PRINTS | 3D Printed Goods</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0B0B0F;
+      --dark: #111118;
+      --dark-2: #171720;
+      --cyan: #00E5FF;
+      --magenta: #FF2BD6;
+      --lime: #B6FF00;
+      --white: #F4F4F5;
+      --gray: #8A8F98;
+      --card: rgba(255,255,255,0.055);
+      --line: rgba(255,255,255,0.12);
+      --display: 'Orbitron', 'Space Grotesk', Arial, sans-serif;
+      --body: 'Space Grotesk', Arial, Helvetica, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--body);
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 75% 18%, rgba(255, 43, 214, 0.20), transparent 30%),
+        radial-gradient(circle at 30% 30%, rgba(0, 229, 255, 0.14), transparent 30%),
+        radial-gradient(circle at 50% 120%, rgba(0, 229, 255, 0.10), transparent 45%),
+        linear-gradient(135deg, rgba(255,255,255,0.02), transparent 40%);
+      z-index: -3;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.16;
+      background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 56px 56px;
+      z-index: -2;
+      mask-image: radial-gradient(circle at center, black, transparent 72%);
+    }
+
+    /* faint moving scanlines for a screen/print vibe */
+    .scanlines {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: .5;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,.025) 0 1px,
+        transparent 1px 4px
+      );
+      mix-blend-mode: overlay;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .glitch-line {
+      position: absolute;
+      height: 2px;
+      width: 44px;
+      background: var(--cyan);
+      box-shadow: 72px 0 var(--magenta), -46px 0 var(--white);
+      opacity: .8;
+      animation: jitter 4s infinite steps(1);
+    }
+
+    .glitch-line.one { top: 25%; right: 10%; }
+    .glitch-line.two { top: 49%; left: 5%; transform: scaleX(1.6); }
+    .glitch-line.three { bottom: 18%; right: 24%; transform: scaleX(.8); }
+
+    @keyframes jitter {
+      0%, 100% { transform: translate(0, 0); }
+      18% { transform: translate(8px, -2px); }
+      19% { transform: translate(-6px, 3px); }
+      20% { transform: translate(0, 0); }
+      61% { transform: translate(-7px, 2px); }
+      62% { transform: translate(4px, -3px); }
+      63% { transform: translate(0, 0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: .55; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes spinSlow {
+      to { transform: rotate(360deg); }
+    }
+
+    header {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      font-family: var(--display);
+      line-height: .9;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      position: relative;
+      display: inline-block;
+    }
+
+    .logo span {
+      display: block;
+      color: var(--magenta);
+      font-weight: 700;
+      font-size: .58em;
+      letter-spacing: 7px;
+      margin-left: 4px;
+      text-shadow: 2px 0 var(--cyan), -1px 0 rgba(255,255,255,.5);
+    }
+
+    .logo::before,
+    .logo::after {
+      content: "GLITCH";
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: .7;
+      clip-path: inset(0 0 55% 0);
+      pointer-events: none;
+    }
+
+    .logo::before { color: var(--cyan); transform: translateX(2px); }
+    .logo::after { color: var(--magenta); transform: translateX(-2px); }
+
+    nav {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      font-size: .78rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: .8px;
+    }
+
+    nav a {
+      color: var(--white);
+      opacity: .88;
+      position: relative;
+      transition: color .18s ease, opacity .18s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--magenta);
+      opacity: 1;
+    }
+
+    nav a.active::after {
+      content: "";
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      left: 0;
+      bottom: -10px;
+      background: var(--magenta);
+      box-shadow: 10px 0 var(--cyan);
+    }
+
+    .cart {
+      font-size: 1.25rem;
+      filter: drop-shadow(2px 0 var(--magenta));
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cart-count {
+      min-width: 18px;
+      height: 18px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--magenta);
+      color: var(--white);
+      font-family: var(--display);
+      font-size: .62rem;
+      line-height: 1;
+    }
+
+    .hero {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      min-height: 640px;
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      align-items: center;
+      gap: 36px;
+      padding: 30px 0 70px;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(11, 11, 15, .96) 0%, rgba(11, 11, 15, .76) 42%, rgba(11, 11, 15, .28) 100%),
+        linear-gradient(0deg, rgba(11, 11, 15, .50), rgba(11, 11, 15, .08)),
+        url("glowing%20cat%20picture.png") right center / auto 92% no-repeat;
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow:
+        inset 0 0 80px rgba(0,0,0,.48),
+        0 0 42px rgba(0, 229, 255, .10),
+        0 0 78px rgba(255, 43, 214, .10);
+    }
+
+    .hero-video,
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .hero-video {
+      z-index: 0;
+      object-fit: cover;
+      opacity: .55;
+    }
+
+    .hero-overlay {
+      z-index: 1;
+      background:
+        linear-gradient(90deg, rgba(11,11,15,.92) 0%, rgba(11,11,15,.55) 45%, rgba(11,11,15,.15) 100%),
+        linear-gradient(0deg, var(--black) 0%, transparent 40%);
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--cyan);
+      margin-bottom: 18px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      background: var(--cyan);
+      box-shadow: 0 0 10px var(--cyan);
+    }
+
+    h1 {
+      font-family: var(--display);
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: .95;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 26px;
+    }
+
+    h1 .white { color: var(--white); }
+    h1 .magenta {
+      color: var(--magenta);
+      text-shadow: 3px 0 var(--cyan), -2px 0 rgba(255,255,255,.18);
+    }
+
+    .hero-copy {
+      max-width: 440px;
+      color: rgba(244,244,245,.82);
+      line-height: 1.75;
+      margin-bottom: 32px;
+      font-size: 1rem;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 24px;
+      border: 1px solid transparent;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: .7px;
+      font-family: var(--display);
+      transition: .2s ease;
+      cursor: pointer;
+    }
+
+    .btn.primary {
+      background: var(--magenta);
+      color: var(--white);
+      box-shadow: 6px 6px 0 var(--cyan);
+    }
+
+    .btn.primary:hover {
+      transform: translate(3px, 3px);
+      box-shadow: 3px 3px 0 var(--cyan);
+    }
+
+    .btn:disabled {
+      opacity: .38;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .btn.secondary {
+      border-color: var(--line);
+      color: var(--white);
+      background: rgba(255,255,255,.035);
+    }
+
+    .btn.secondary:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      box-shadow: 0 0 18px rgba(0,229,255,.25);
+    }
+
+    .stats {
+      display: flex;
+      gap: 30px;
+      margin-top: 34px;
+      flex-wrap: wrap;
+    }
+
+    .stats .num {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--white);
+    }
+
+    .stats .num em {
+      color: var(--cyan);
+      font-style: normal;
+    }
+
+    .stats .lbl {
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      color: var(--gray);
+      margin-top: 2px;
+    }
+
+    .hero-art {
+      position: relative;
+      z-index: 2;
+      min-height: 500px;
+      display: grid;
+      place-items: center;
+    }
+
+    .print-stage {
+      width: min(540px, 100%);
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .hero-svg {
+      width: 100%;
+      height: auto;
+      animation: float 7s ease-in-out infinite;
+      filter: drop-shadow(0 40px 70px rgba(0,0,0,.6));
+    }
+
+    .socials {
+      position: absolute;
+      right: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 4;
+    }
+
+    .socials a {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      color: var(--white);
+      background: rgba(11,11,15,.5);
+      backdrop-filter: blur(4px);
+      font-size: .9rem;
+      transition: .2s ease;
+      cursor: pointer;
+    }
+
+    .socials a:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      box-shadow: 0 0 16px rgba(0,229,255,.4);
+    }
+
+    .socials a.yt-social:hover {
+      border-color: #ff2b2b;
+      color: #ff5a5a;
+      box-shadow: 0 0 16px rgba(255,0,0,.4);
+    }
+
+    .products {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto 90px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-family: var(--display);
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-size: clamp(1.35rem, 3vw, 2.1rem);
+    }
+
+    .view-all {
+      color: var(--magenta);
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: .8px;
+      font-family: var(--display);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .cat-head {
+      font-family: var(--display);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 1rem;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 8px 0 18px;
+    }
+
+    .cat-head::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--magenta));
+      box-shadow: 0 0 10px rgba(0,229,255,.6);
+    }
+
+    .cat-head span {
+      color: var(--gray);
+      font-size: .72rem;
+      letter-spacing: 1px;
+      -webkit-text-fill-color: initial;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.08);
+      min-height: 270px;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+      transition: .22s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0,229,255,.5);
+      box-shadow: 0 18px 40px rgba(0,0,0,.45);
+    }
+
+    .card.highlight {
+      border-color: rgba(255,43,214,.72);
+      box-shadow: 0 0 26px rgba(255,43,214,.18);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cyan), var(--magenta));
+      opacity: .9;
+    }
+
+    .product-img {
+      height: 150px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 12px;
+      position: relative;
+      border-radius: 10px;
+      background:
+        radial-gradient(circle at 50% 60%, rgba(0,229,255,.10), transparent 62%),
+        radial-gradient(circle at 50% 50%, rgba(255,43,214,.08), transparent 70%);
+    }
+
+    .product-svg {
+      width: auto;
+      height: 134px;
+      filter: drop-shadow(0 16px 22px rgba(0,0,0,.55));
+      transition: transform .3s ease;
+    }
+
+    .product-photo {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      border-radius: 8px;
+      filter: drop-shadow(0 16px 22px rgba(0,0,0,.55));
+      transition: transform .3s ease;
+    }
+
+    .card:hover .product-svg,
+    .card:hover .product-photo {
+      transform: translateY(-4px) scale(1.04);
+    }
+
+    .card h3 {
+      font-family: var(--display);
+      font-size: .9rem;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: .84rem;
+      color: rgba(244,244,245,.68);
+      line-height: 1.45;
+    }
+
+    .price {
+      margin-top: 12px;
+      color: var(--cyan);
+      font-weight: 700;
+      letter-spacing: .6px;
+      font-family: var(--display);
+    }
+
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .mini-btn {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.035);
+      color: var(--white);
+      font-family: var(--display);
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    .mini-btn:hover,
+    .mini-btn:focus-visible {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      box-shadow: 0 0 18px rgba(0,229,255,.18);
+      outline: none;
+    }
+
+    .mini-btn.add {
+      background: rgba(255,43,214,.14);
+      border-color: rgba(255,43,214,.42);
+    }
+
+    .custom {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto 90px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .custom-panel {
+      padding: 34px;
+      min-height: 230px;
+      background: linear-gradient(135deg, rgba(255,43,214,.14), rgba(0,229,255,.08));
+      border: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .custom-panel h2 {
+      margin-bottom: 14px;
+    }
+
+    .custom-panel p {
+      color: rgba(244,244,245,.74);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .panel-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn.donate {
+      background: var(--lime);
+      color: #0B0B0F;
+      box-shadow: 6px 6px 0 var(--magenta);
+    }
+
+    .btn.donate:hover {
+      transform: translate(3px, 3px);
+      box-shadow: 3px 3px 0 var(--magenta);
+    }
+
+    .btn.donate .heart {
+      margin-right: 8px;
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+
+    .clickers {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto 90px;
+    }
+
+    .clicker-builder {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 20px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(0,229,255,.09), rgba(255,43,214,.10));
+      padding: 30px;
+    }
+
+    .clicker-controls p.lead {
+      color: rgba(244,244,245,.74);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-size: .92rem;
+    }
+
+    .clicker-controls .field {
+      margin-bottom: 16px;
+    }
+
+    .char-count {
+      font-family: var(--display);
+      font-size: .68rem;
+      color: var(--gray);
+      letter-spacing: 1px;
+    }
+
+    .char-count.maxed { color: var(--magenta); }
+
+    .layout-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .layout-btn {
+      display: grid;
+      gap: 3px;
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      color: var(--white);
+      font-family: var(--display);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      text-align: left;
+      cursor: pointer;
+      transition: .15s ease;
+    }
+
+    .layout-btn span {
+      font-family: var(--body);
+      font-weight: 400;
+      font-size: .66rem;
+      letter-spacing: .4px;
+      color: var(--gray);
+      text-transform: none;
+    }
+
+    .layout-btn:hover,
+    .layout-btn:focus-visible {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      box-shadow: 0 0 14px rgba(0,229,255,.28);
+      outline: none;
+    }
+
+    .layout-btn[aria-pressed="true"] {
+      border-color: var(--magenta);
+      background: rgba(255,43,214,.14);
+      box-shadow: 0 0 16px rgba(255,43,214,.22);
+    }
+
+    .symbol-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .symbol-btn {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      color: var(--white);
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: .15s ease;
+    }
+
+    .symbol-btn:hover,
+    .symbol-btn:focus-visible {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      box-shadow: 0 0 14px rgba(0,229,255,.28);
+      outline: none;
+    }
+
+    .swatch-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .swatch {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      background: var(--sw);
+      cursor: pointer;
+      transition: .15s ease;
+    }
+
+    .swatch:hover { transform: scale(1.12); }
+
+    .swatch[aria-pressed="true"] {
+      border-color: var(--white);
+      box-shadow: 0 0 14px var(--sw);
+    }
+
+    .clicker-stage {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+      border: 1px solid var(--line);
+      background: rgba(11,11,15,.55);
+      padding: 24px;
+    }
+
+    .clicker-stage .hint {
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      color: var(--gray);
+    }
+
+    .clicker-preview {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+      min-height: 84px;
+    }
+
+    .clicker-preview.grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 50px);
+      justify-content: start;
+    }
+
+    .clicker-preview.grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 50px);
+      justify-content: start;
+    }
+
+    .clicker-tile.ghost {
+      border-style: dashed;
+      border-color: rgba(255,255,255,.22);
+      color: rgba(255,255,255,.25);
+      background: rgba(255,255,255,.02);
+      box-shadow: none;
+      cursor: default;
+    }
+
+    .clicker-preview .empty {
+      color: rgba(244,244,245,.4);
+      font-size: .9rem;
+      font-style: italic;
+    }
+
+    .clicker-tile {
+      --tile: var(--cyan);
+      width: 50px;
+      height: 62px;
+      display: grid;
+      place-items: center;
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: 1.25rem;
+      color: var(--tile);
+      border: 1px solid var(--tile);
+      border-radius: 9px;
+      background:
+        linear-gradient(165deg, rgba(255,255,255,.16), rgba(255,255,255,.02) 55%),
+        rgba(11,11,15,.85);
+      box-shadow:
+        0 6px 0 rgba(0,0,0,.6),
+        0 0 14px color-mix(in srgb, var(--tile) 35%, transparent),
+        inset 0 1px 0 rgba(255,255,255,.22);
+      cursor: pointer;
+      user-select: none;
+      transition: transform .07s ease, box-shadow .07s ease;
+    }
+
+    .clicker-tile:active,
+    .clicker-tile.clicked {
+      transform: translateY(5px);
+      box-shadow:
+        0 1px 0 rgba(0,0,0,.6),
+        0 0 20px color-mix(in srgb, var(--tile) 60%, transparent),
+        inset 0 1px 0 rgba(255,255,255,.22);
+    }
+
+    .clicker-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+
+    .clicker-price {
+      font-family: var(--display);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .clicker-price .amt {
+      color: var(--lime);
+      font-size: 1.5rem;
+      display: block;
+    }
+
+    .clicker-price .breakdown {
+      font-size: .68rem;
+      color: var(--gray);
+      letter-spacing: .8px;
+    }
+
+    @media (max-width: 800px) {
+      .clicker-builder { grid-template-columns: 1fr; }
+    }
+
+    .about-team {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto 90px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .about-copy p {
+      color: rgba(244,244,245,.82);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .about-copy strong { color: var(--white); }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .fact {
+      border: 1px solid var(--line);
+      background: var(--card);
+      padding: 14px;
+    }
+
+    .fact .k {
+      font-size: .66rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--cyan);
+      margin-bottom: 6px;
+    }
+
+    .fact .v { font-weight: 600; font-size: .88rem; line-height: 1.35; }
+
+    .cost-card {
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(0,229,255,.07), rgba(255,43,214,.07));
+      padding: 28px;
+    }
+
+    .cost-card h3 {
+      font-family: var(--display);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .cost-card .lead {
+      color: rgba(244,244,245,.7);
+      font-size: .85rem;
+      margin-bottom: 22px;
+    }
+
+    .cost-row { margin-bottom: 15px; }
+
+    .cost-row .top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: .84rem;
+      margin-bottom: 6px;
+    }
+
+    .cost-row .amt {
+      color: var(--cyan);
+      font-weight: 600;
+      font-family: var(--display);
+      white-space: nowrap;
+    }
+
+    .bar {
+      height: 8px;
+      background: rgba(255,255,255,.08);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .bar > span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--cyan), var(--magenta));
+      border-radius: 6px;
+    }
+
+    .cost-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-top: 1px solid var(--line);
+      margin-top: 4px;
+      padding-top: 16px;
+      font-family: var(--display);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: .9rem;
+    }
+
+    .cost-total .amt { color: var(--lime); font-size: 1.2rem; }
+
+    .cost-card .btn.donate { margin-top: 22px; width: 100%; }
+
+    .about-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .btn.youtube {
+      border-color: rgba(255,0,0,.5);
+      color: var(--white);
+      background: rgba(255,0,0,.10);
+    }
+
+    .btn.youtube:hover {
+      border-color: #ff2b2b;
+      color: var(--white);
+      box-shadow: 0 0 18px rgba(255,0,0,.4);
+    }
+
+    .btn.youtube .yt {
+      margin-right: 9px;
+      font-size: .9rem;
+    }
+
+    @media (max-width: 800px) {
+      .about-grid { grid-template-columns: 1fr; }
+    }
+
+    .faq {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto 90px;
+    }
+
+    .faq h2 {
+      margin-bottom: 18px;
+    }
+
+    .faq-item {
+      border-top: 1px solid var(--line);
+    }
+
+    .faq-item:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .faq-toggle {
+      width: 100%;
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border: 0;
+      background: transparent;
+      color: var(--white);
+      font-family: var(--display);
+      text-align: left;
+      text-transform: uppercase;
+      letter-spacing: .7px;
+      cursor: pointer;
+    }
+
+    .faq-toggle::after {
+      content: "+";
+      color: var(--cyan);
+      font-size: 1.3rem;
+    }
+
+    .faq-toggle[aria-expanded="true"]::after {
+      content: "-";
+    }
+
+    .faq-answer {
+      display: none;
+      max-width: 720px;
+      color: rgba(244,244,245,.72);
+      line-height: 1.65;
+      padding: 0 0 20px;
+    }
+
+    .faq-answer.open {
+      display: block;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translate(-50%, 22px);
+      z-index: 40;
+      min-width: min(360px, calc(100% - 32px));
+      padding: 14px 18px;
+      border: 1px solid rgba(0,229,255,.38);
+      background: rgba(11,11,15,.92);
+      color: var(--white);
+      box-shadow: 0 18px 36px rgba(0,0,0,.45);
+      opacity: 0;
+      pointer-events: none;
+      transition: .22s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    .cart-panel {
+      position: fixed;
+      right: 20px;
+      top: 92px;
+      z-index: 35;
+      width: min(360px, calc(100% - 40px));
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: rgba(11,11,15,.95);
+      box-shadow: 0 24px 60px rgba(0,0,0,.55);
+      display: none;
+    }
+
+    .cart-panel.open {
+      display: block;
+    }
+
+    .cart-panel h2 {
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+
+    .cart-items {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 16px;
+      color: rgba(244,244,245,.82);
+      font-size: .9rem;
+    }
+
+    .cart-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      padding-bottom: 8px;
+    }
+
+    .cart-panel .actions {
+      justify-content: space-between;
+    }
+
+    .request-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      place-items: center;
+      padding: 24px;
+      background: rgba(0,0,0,.68);
+      backdrop-filter: blur(8px);
+    }
+
+    .request-modal.open {
+      display: grid;
+    }
+
+    .request-dialog {
+      width: min(620px, 100%);
+      max-height: min(760px, calc(100vh - 48px));
+      overflow: auto;
+      border: 1px solid var(--line);
+      background: rgba(11,11,15,.97);
+      box-shadow: 0 30px 80px rgba(0,0,0,.68);
+      padding: 24px;
+    }
+
+    .request-head {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .request-head h2 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .request-head p {
+      color: rgba(244,244,245,.68);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      flex: 0 0 auto;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.035);
+      color: var(--white);
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    .icon-btn:hover,
+    .icon-btn:focus-visible {
+      border-color: var(--magenta);
+      color: var(--magenta);
+      outline: none;
+    }
+
+    .request-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field label {
+      color: rgba(244,244,245,.78);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      color: var(--white);
+      padding: 10px 12px;
+      font: inherit;
+    }
+
+    .field textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(0,229,255,.12);
+      outline: none;
+    }
+
+    .request-form .actions {
+      justify-content: flex-end;
+      margin-top: 6px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0;
+      color: rgba(244,244,245,.54);
+      font-size: .84rem;
+    }
+
+    .footer-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-inner strong { color: rgba(244,244,245,.8); }
+
+    .footer-yt {
+      color: #ff6b6b;
+      font-weight: 600;
+      transition: color .2s ease, text-shadow .2s ease;
+    }
+
+    .footer-yt:hover {
+      color: #ff3b3b;
+      text-shadow: 0 0 12px rgba(255,0,0,.5);
+    }
+
+    .defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+    @media (max-width: 950px) {
+      header { align-items: flex-start; }
+      nav { gap: 16px; flex-wrap: wrap; justify-content: flex-end; }
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        background:
+          linear-gradient(180deg, rgba(11, 11, 15, .96) 0%, rgba(11, 11, 15, .74) 48%, rgba(11, 11, 15, .32) 100%),
+          linear-gradient(0deg, rgba(11, 11, 15, .45), rgba(11, 11, 15, .08)),
+          url("glowing%20cat%20picture.png") center bottom / 100% auto no-repeat;
+      }
+      .hero-art { min-height: 280px; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .custom { grid-template-columns: 1fr; }
+      .socials { display: none; }
+    }
+
+    @media (max-width: 560px) {
+      header {
+        width: min(100% - 28px, 1180px);
+        flex-direction: column;
+        gap: 22px;
+      }
+      nav {
+        justify-content: flex-start;
+        gap: 14px 18px;
+      }
+      .hero,
+      .products,
+      .custom,
+      .footer-inner {
+        width: min(100% - 28px, 1180px);
+      }
+      .hero { padding-top: 10px; }
+      h1 { font-size: 3.2rem; }
+      .hero-art { min-height: 220px; }
+      .product-grid { grid-template-columns: 1fr; }
+      .section-head { align-items: start; flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-svg, .glitch-line, .pulse-el { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- Shared SVG gradients + filters -->
+  <svg class="defs" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#2c3858" />
+        <stop offset="0.55" stop-color="#161d2e" />
+        <stop offset="1" stop-color="#05070d" />
+      </linearGradient>
+      <linearGradient id="steel2" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#3a496b" />
+        <stop offset="1" stop-color="#0a0e18" />
+      </linearGradient>
+      <linearGradient id="steel3" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#10151f" />
+        <stop offset="1" stop-color="#243049" />
+      </linearGradient>
+      <linearGradient id="neon" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#00E5FF" />
+        <stop offset="1" stop-color="#FF2BD6" />
+      </linearGradient>
+      <linearGradient id="leaf" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#9dff5a" />
+        <stop offset="1" stop-color="#0fae7a" />
+      </linearGradient>
+      <radialGradient id="bedGlow" cx="0.5" cy="0.5" r="0.5">
+        <stop offset="0" stop-color="#00E5FF" stop-opacity="0.55" />
+        <stop offset="0.6" stop-color="#FF2BD6" stop-opacity="0.18" />
+        <stop offset="1" stop-color="#00E5FF" stop-opacity="0" />
+      </radialGradient>
+      <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur stdDeviation="2.1" result="b" />
+        <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+      </filter>
+      <filter id="bigglow" x="-80%" y="-80%" width="260%" height="260%">
+        <feGaussianBlur stdDeviation="5" result="b" />
+        <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+      </filter>
+      <pattern id="layers" width="60" height="5" patternUnits="userSpaceOnUse">
+        <rect width="60" height="5" fill="none" />
+        <rect width="60" height="2.3" fill="#ffffff" opacity="0.06" />
+      </pattern>
+    </defs>
+  </svg>
+
+  <main class="page">
+    <span class="glitch-line one"></span>
+    <span class="glitch-line two"></span>
+    <span class="glitch-line three"></span>
+
+    <header>
+      <a href="#home" class="logo" aria-label="Glitch Prints home">GLITCH <span>PRINTS</span></a>
+      <nav aria-label="Main navigation">
+        <a class="active" href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#clickers">Clickers</a>
+        <a href="#custom">Custom Prints</a>
+        <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
+        <a class="cart" href="#cart" aria-label="Shopping cart" data-cart-toggle>⌁ <span class="cart-count">0</span></a>
+      </nav>
+    </header>
+
+    <section class="hero" id="home">
+      <video class="hero-video" autoplay muted loop playsinline poster="glowing%20cat%20picture.png" aria-hidden="true">
+        <source src="assets/hero-bg.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-text">
+        <div class="eyebrow">3D printed objects</div>
+        <h1><span class="white">Design it.</span><br><span class="white">Print it.</span><br><span class="magenta">Use it.</span></h1>
+        <p class="hero-copy">High-quality 3D prints made with precision. Choose from ready-made products or request a custom print built layer by layer.</p>
+        <div class="actions">
+          <a class="btn primary" href="#shop">Shop Now</a>
+          <a class="btn secondary" href="#custom">Request Custom</a>
+        </div>
+        <div class="stats">
+          <div>
+            <div class="num"><em>500</em>+</div>
+            <div class="lbl">Prints Shipped</div>
+          </div>
+          <div>
+            <div class="num"><em>0.1</em>mm</div>
+            <div class="lbl">Layer Precision</div>
+          </div>
+          <div>
+            <div class="num"><em>48</em>h</div>
+            <div class="lbl">Avg. Turnaround</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="socials" aria-label="Social links">
+          <a class="yt-social" href="https://www.youtube.com/@AIFutureRobotics" target="_blank" rel="noopener" aria-label="YouTube channel" title="YouTube">▶</a>
+          <a href="#shop" aria-label="Shop">◎</a>
+          <a href="mailto:hello@glitchprints.example" aria-label="Email">✉</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="products" id="shop">
+      <div class="section-head">
+        <h2>Shop Our Prints</h2>
+        <a class="view-all" href="#shop" data-view-all>View All →</a>
+      </div>
+
+      <h3 class="cat-head">Flexi Dragons <span>articulated, print-in-place</span></h3>
+      <div class="product-grid">
+
+        <article class="card">
+          <div class="product-img">
+            <img class="product-photo" loading="lazy" src="assets/prod-grand-dragon.png" alt="Large white articulated flexi dragon 3D print" />
+          </div>
+          <h3>Grand Flexi Dragon</h3>
+          <p>Statement-size articulated dragon with a foot of poseable scales.</p>
+          <div class="price">From $28</div>
+          <div class="card-actions">
+            <button class="mini-btn add" type="button" data-add-to-cart data-name="Grand Flexi Dragon" data-price="28">Add to Cart</button>
+            <button class="mini-btn" type="button" data-details="Grand Flexi Dragon">Details</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="product-img">
+            <img class="product-photo" loading="lazy" src="assets/dragon-crystal.png" alt="Blue and white articulated flexi crystal dragon 3D print" />
+          </div>
+          <h3>Flexi Crystal Dragon</h3>
+          <p>Poseable print-in-place dragon with iridescent blue-white scales.</p>
+          <div class="price">From $16</div>
+          <div class="card-actions">
+            <button class="mini-btn add" type="button" data-add-to-cart data-name="Flexi Crystal Dragon" data-price="16">Add to Cart</button>
+            <button class="mini-btn" type="button" data-details="Flexi Crystal Dragon">Details</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="product-img">
+            <img class="product-photo" loading="lazy" src="assets/prod-flame-dragon.png" alt="Yellow feathered flame flexi dragon 3D print" />
+          </div>
+          <h3>Flexi Flame Dragon</h3>
+          <p>Fierce feathered flame dragon with layered spikes.</p>
+          <div class="price">From $16</div>
+          <div class="card-actions">
+            <button class="mini-btn add" type="button" data-add-to-cart data-name="Flexi Flame Dragon" data-price="16">Add to Cart</button>
+            <button class="mini-btn" type="button" data-details="Flexi Flame Dragon">Details</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="product-img">
+            <img class="product-photo" loading="lazy" src="assets/prod-forest-dragon.png" alt="Lime green glow articulated flexi dragon 3D print" />
+          </div>
+          <h3>Flexi Forest Dragon</h3>
+          <p>Glow-ready lime-green articulated dragon with layered scales.</p>
+          <div class="price">From $18</div>
+          <div class="card-actions">
+            <button class="mini-btn add" type="button" data-add-to-cart data-name="Flexi Forest Dragon" data-price="18">Add to Cart</button>
+            <button class="mini-btn" type="button" data-details="Flexi Forest Dragon">Details</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="product-img">
+            <img class="product-photo" loading="lazy" src="assets/dragon-shadow.png" alt="Black and red articulated flexi shadow dragons 3D print" />
+          </div>
+          <h3>Flexi Shadow Dragons</h3>
+          <p>Bold black-and-red articulated dragons with spined crests.</p>
+          <div class="price">From $18</div>
+          <div class="card-actions">
+            <button class="mini-btn add" type="button" data-add-to-cart data-name="Flexi Shadow Dragons" data-price="18">Add to Cart</button>
+            <button class="mini-btn" type="button" data-details="Flexi Shadow Dragons">Details</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="product-img">
+            <img class="product-photo" loading="lazy" src="assets/prod-mini-dragons.png" alt="Set of mini crystal-crested flexi dragons 3D print" />
+          </div>
+          <h3>Mini Flexi Dragons</h3>
+          <p>Palm-size crystal-crested dragons — collect the whole set.</p>
+          <div class="price">From $6</div>
+          <div class="card-actions">
+            <button class="mini-btn add" type="button" data-add-to-cart data-name="Mini Flexi Dragons" data-price="6">Add to Cart</button>
+            <button class="mini-btn" type="button" data-details="Mini Flexi Dragons">Details</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="product-img">
+            <img class="product-photo" loading="lazy" src="assets/prod-blue-minis.png" alt="Set of blue mini articulated dragons 3D print" />
+          </div>
+          <h3>Blue Mini Dragons</h3>
+          <p>Ocean-blue palm-size flexi dragons — collect the set.</p>
+          <div class="price">From $6</div>
+          <div class="card-actions">
+            <button class="mini-btn add" type="button" data-add-to-cart data-name="Blue Mini Dragons" data-price="6">Add to Cart</button>
+            <button class="mini-btn" type="button" data-details="Blue Mini Dragons">Details</button>
+          </div>
+        </article>
+
+      </div>
+
+      <h3 class="cat-head">Figures &amp; Critters <span>collectible characters</span></h3>
+      <div class="product-grid">
+
+        <article class="card">
+          <div class="product-img">
+            <img class="product-photo" loading="lazy" src="assets/flexi-charmander.png" alt="Orange articulated flexi fire lizard 3D print" />
+          </div>
+          <h3>Flexi Fire Lizard</h3>
+          <p>Articulated print-in-place figure with a poseable tail.</p>
+          <div class="price">From $14</div>
+          <div class="card-actions">
+            <button class="mini-btn add" type="button" data-add-to-cart data-name="Flexi Fire Lizard" data-price="14">Add to Cart</button>
+            <button class="mini-btn" type="button" data-details="Flexi Fire Lizard">Details</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="product-img">
+            <img class="product-photo" loading="lazy" src="assets/prod-spring-cats.png" alt="Articulated spring cat critters 3D print" />
+          </div>
+          <h3>Spring Cats</h3>
+          <p>Springy articulated critters that wobble, pose, and play.</p>
+          <div class="price">From $10</div>
+          <div class="card-actions">
+            <button class="mini-btn add" type="button" data-add-to-cart data-name="Spring Cats" data-price="10">Add to Cart</button>
+            <button class="mini-btn" type="button" data-details="Spring Cats">Details</button>
+          </div>
+        </article>
+
+      </div>
+
+      <h3 class="cat-head">Sculptures &amp; Decor <span>desk &amp; shelf pieces</span></h3>
+      <div class="product-grid">
+
+        <article class="card">
+          <div class="product-img">
+            <img class="product-photo" loading="lazy" src="assets/prod-spiral.png" alt="Printed spiral twist sculptures 3D print" />
+          </div>
+          <h3>Spiral Sculptures</h3>
+          <p>Hypnotic printed twist sculptures for desk or shelf.</p>
+          <div class="price">From $12</div>
+          <div class="card-actions">
+            <button class="mini-btn add" type="button" data-add-to-cart data-name="Spiral Sculptures" data-price="12">Add to Cart</button>
+            <button class="mini-btn" type="button" data-details="Spiral Sculptures">Details</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="product-img">
+            <img class="product-photo" loading="lazy" src="assets/prod-spiral-galaxy.png" alt="Metallic galaxy spiral sculptures 3D print" />
+          </div>
+          <h3>Galaxy Spirals</h3>
+          <p>Metallic galaxy-finish twist sculptures in open and solid styles.</p>
+          <div class="price">From $14</div>
+          <div class="card-actions">
+            <button class="mini-btn add" type="button" data-add-to-cart data-name="Galaxy Spirals" data-price="14">Add to Cart</button>
+            <button class="mini-btn" type="button" data-details="Galaxy Spirals">Details</button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="clickers" id="clickers">
+      <div class="section-head">
+        <h2>Custom Clickers</h2>
+        <a class="view-all" href="#faq">How it works →</a>
+      </div>
+
+      <div class="clicker-builder">
+        <div class="clicker-controls">
+          <p class="lead">Fidget keychains that <strong>click</strong> — one satisfying button per letter or symbol. Pick a shape, type a name or stack symbols, and choose exactly how many characters it has.</p>
+
+          <div class="field">
+            <label>Layout</label>
+            <div class="layout-row" data-layout-row>
+              <button class="layout-btn" type="button" data-layout="row" aria-pressed="true">Straight Row<span>2–12 buttons</span></button>
+              <button class="layout-btn" type="button" data-layout="2x2" aria-pressed="false">2×2 Grid<span>4 buttons</span></button>
+              <button class="layout-btn" type="button" data-layout="3x3" aria-pressed="false">3×3 Grid<span>9 buttons</span></button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="clicker-text">Your Letters &amp; Symbols <span class="char-count" data-clicker-count>0 / 12</span></label>
+            <input id="clicker-text" data-clicker-input maxlength="12" placeholder="Type here... e.g. GIO ★" autocomplete="off" />
+          </div>
+
+          <div class="field">
+            <label>Add a Symbol</label>
+            <div class="symbol-row" data-symbol-row>
+              <button class="symbol-btn" type="button" data-symbol="★" aria-label="Add star symbol">★</button>
+              <button class="symbol-btn" type="button" data-symbol="♥" aria-label="Add heart symbol">♥</button>
+              <button class="symbol-btn" type="button" data-symbol="⚡" aria-label="Add lightning symbol">⚡</button>
+              <button class="symbol-btn" type="button" data-symbol="☾" aria-label="Add moon symbol">☾</button>
+              <button class="symbol-btn" type="button" data-symbol="♪" aria-label="Add music note symbol">♪</button>
+              <button class="symbol-btn" type="button" data-symbol="☺" aria-label="Add smiley symbol">☺</button>
+              <button class="symbol-btn" type="button" data-symbol="✦" aria-label="Add sparkle symbol">✦</button>
+              <button class="symbol-btn" type="button" data-symbol="#" aria-label="Add hashtag symbol">#</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Button Color</label>
+            <div class="swatch-row" data-swatch-row>
+              <button class="swatch" type="button" style="--sw:#00E5FF" data-color="#00E5FF" data-color-name="Cyan" aria-pressed="true" aria-label="Cyan"></button>
+              <button class="swatch" type="button" style="--sw:#FF2BD6" data-color="#FF2BD6" data-color-name="Magenta" aria-pressed="false" aria-label="Magenta"></button>
+              <button class="swatch" type="button" style="--sw:#B6FF00" data-color="#B6FF00" data-color-name="Lime" aria-pressed="false" aria-label="Lime"></button>
+              <button class="swatch" type="button" style="--sw:#FF8A00" data-color="#FF8A00" data-color-name="Orange" aria-pressed="false" aria-label="Orange"></button>
+              <button class="swatch" type="button" style="--sw:#F4F4F5" data-color="#F4F4F5" data-color-name="White" aria-pressed="false" aria-label="White"></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="clicker-stage">
+          <span class="hint">Live preview — go ahead, click the buttons</span>
+          <div class="clicker-preview" data-clicker-preview aria-live="polite">
+            <span class="empty">Your clicker shows up here...</span>
+          </div>
+          <div class="clicker-summary">
+            <div class="clicker-price">
+              <span class="amt" data-clicker-price>$0</span>
+              <span class="breakdown">$5 base + $1 per letter or symbol</span>
+            </div>
+            <button class="btn primary" type="button" data-clicker-add disabled>Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-team" id="about">
+      <div class="section-head">
+        <h2>Meet the Team</h2>
+        <a class="view-all" href="#custom">Support Us →</a>
+      </div>
+      <div class="about-grid">
+        <div class="about-copy">
+          <div class="eyebrow">Premium Rice Cookers · FTC Robotics</div>
+          <p>We're <strong>Premium Rice Cookers</strong>, a student-run <strong>FIRST Tech Challenge (FTC)</strong> robotics team based in <strong>Flushing, Queens, New York City</strong>. Every season we design, build, wire, and program a competition robot from the ground up — then take it head-to-head against teams from across the region.</p>
+          <p>Selling our 3D prints is how we fund the season, and it's also how we <strong>learn</strong> — real engineering, CAD, coding, and the business side of running a team. Every print you buy and every dollar you donate keeps students on the field, building and competing.</p>
+          <div class="facts">
+            <div class="fact">
+              <div class="k">Team</div>
+              <div class="v">Premium Rice Cookers</div>
+            </div>
+            <div class="fact">
+              <div class="k">Location</div>
+              <div class="v">Flushing, Queens · NYC</div>
+            </div>
+            <div class="fact">
+              <div class="k">Program</div>
+              <div class="v">FIRST Tech Challenge</div>
+            </div>
+          </div>
+          <div class="about-actions">
+            <a class="btn youtube" href="https://www.youtube.com/@AIFutureRobotics" target="_blank" rel="noopener"><span class="yt">▶</span>Watch on YouTube</a>
+            <a class="btn secondary" href="#custom">Support the Team</a>
+          </div>
+        </div>
+
+        <div class="cost-card">
+          <h3>Where Your Money Goes</h3>
+          <p class="lead">One competition season costs our team about <strong>$5,000</strong>. Here's the breakdown:</p>
+
+          <div class="cost-row">
+            <div class="top"><span>Registration &amp; event fees</span><span class="amt">$1,500</span></div>
+            <div class="bar"><span style="width:30%"></span></div>
+          </div>
+          <div class="cost-row">
+            <div class="top"><span>Robot parts &amp; electronics</span><span class="amt">$1,400</span></div>
+            <div class="bar"><span style="width:28%"></span></div>
+          </div>
+          <div class="cost-row">
+            <div class="top"><span>Travel to competitions</span><span class="amt">$700</span></div>
+            <div class="bar"><span style="width:14%"></span></div>
+          </div>
+          <div class="cost-row">
+            <div class="top"><span>Filament &amp; prototyping</span><span class="amt">$600</span></div>
+            <div class="bar"><span style="width:12%"></span></div>
+          </div>
+          <div class="cost-row">
+            <div class="top"><span>Tools &amp; workspace</span><span class="amt">$500</span></div>
+            <div class="bar"><span style="width:10%"></span></div>
+          </div>
+          <div class="cost-row">
+            <div class="top"><span>Team apparel &amp; outreach</span><span class="amt">$300</span></div>
+            <div class="bar"><span style="width:6%"></span></div>
+          </div>
+
+          <div class="cost-total"><span>Season Total</span><span class="amt">$5,000</span></div>
+
+          <a class="btn donate" href="https://ko-fi.com/glitchprints" target="_blank" rel="noopener"><span class="heart">♥</span>Fund Our Season</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="custom" id="custom">
+      <div class="custom-panel">
+        <h2>Custom Prints</h2>
+        <p>Have an idea, file, sketch, or reference image? Send it to us and we’ll help turn it into a physical 3D print.</p>
+        <button class="btn primary" type="button" data-request-open>Start a Request</button>
+      </div>
+      <div class="custom-panel" id="mission">
+        <h2>Built Layer by Layer</h2>
+        <p>GLITCH PRINTS creates functional, collectible, and custom 3D printed items while supporting student makers and hands-on entrepreneurship. Every donation helps us buy filament, maintain our printers, and keep young makers building.</p>
+        <div class="panel-actions">
+          <a class="btn donate" href="https://ko-fi.com/glitchprints" target="_blank" rel="noopener"><span class="heart">♥</span>Donate</a>
+          <a class="btn secondary" href="#shop">Browse Products</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <h2>FAQ</h2>
+      <div class="faq-item">
+        <button class="faq-toggle" type="button" aria-expanded="false">How do custom requests work?</button>
+        <p class="faq-answer">Send the idea, size, color, quantity, and any reference files. You will get a quote before anything is printed.</p>
+      </div>
+      <div class="faq-item">
+        <button class="faq-toggle" type="button" aria-expanded="false">How long do prints take?</button>
+        <p class="faq-answer">Most small prints are ready within 48 hours once the design and color are confirmed.</p>
+      </div>
+      <div class="faq-item">
+        <button class="faq-toggle" type="button" aria-expanded="false">How do custom clickers work?</button>
+        <p class="faq-answer">Each letter or symbol on a clicker is its own clicky button. Pick a shape — a straight row (2–12 buttons), a 2×2 grid (4 buttons), or a 3×3 grid (9 buttons) — then type your text, add symbols, and pick a color. The price updates as you build: $5 base plus $1 per button. Add it to your cart and the exact text, layout, and color come through with your order.</p>
+      </div>
+      <div class="faq-item">
+        <button class="faq-toggle" type="button" aria-expanded="false">Can I pick colors?</button>
+        <p class="faq-answer">Yes. Pick from available filament colors, or ask about ordering a special color for your print.</p>
+      </div>
+    </section>
+
+    <aside class="cart-panel" id="cart" aria-live="polite">
+      <h2>Cart</h2>
+      <div class="cart-items" data-cart-items>
+        <p>Your cart is empty.</p>
+      </div>
+      <div class="actions">
+        <button class="mini-btn" type="button" data-clear-cart>Clear</button>
+        <a class="btn primary" data-checkout href="mailto:hello@glitchprints.example?subject=3D%20Print%20Order">Checkout</a>
+      </div>
+    </aside>
+
+    <div class="toast" data-toast role="status" aria-live="polite"></div>
+
+    <div class="request-modal" data-request-modal aria-hidden="true">
+      <div class="request-dialog" role="dialog" aria-modal="true" aria-labelledby="request-title">
+        <div class="request-head">
+          <div>
+            <h2 id="request-title">Custom Print Request</h2>
+            <p>Tell us what you want printed and we will prepare a quote.</p>
+          </div>
+          <button class="icon-btn" type="button" aria-label="Close request form" data-request-close>×</button>
+        </div>
+        <form class="request-form" data-request-form>
+          <div class="form-row">
+            <div class="field">
+              <label for="request-name">Name</label>
+              <input id="request-name" name="name" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="request-email">Email</label>
+              <input id="request-email" name="email" type="email" autocomplete="email" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="request-type">Print Type</label>
+              <select id="request-type" name="type" required>
+                <option value="">Choose one</option>
+                <option>Figure or model</option>
+                <option>Clicker keychain</option>
+                <option>Functional part</option>
+                <option>Desk item</option>
+                <option>Planter</option>
+                <option>Other custom print</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="request-quantity">Quantity</label>
+              <input id="request-quantity" name="quantity" type="number" min="1" value="1" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="request-color">Color</label>
+              <input id="request-color" name="color" placeholder="Black, neon pink, glow, etc." />
+            </div>
+            <div class="field">
+              <label for="request-size">Approx. Size</label>
+              <input id="request-size" name="size" placeholder="Example: 4 inches tall" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="request-details">Project Details</label>
+            <textarea id="request-details" name="details" placeholder="Describe the print, deadline, reference files, or any special notes." required></textarea>
+          </div>
+          <div class="actions">
+            <button class="btn secondary" type="button" data-request-close>Cancel</button>
+            <button class="btn primary" type="submit">Send Request</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-inner">
+        <p>© 2026 GLITCH PRINTS — a fundraiser by <strong>Premium Rice Cookers</strong>, FTC Robotics · Flushing, Queens NYC.</p>
+        <p><a href="points-worksheet.html" class="footer-yt" style="color: var(--cyan);">◎ Class Points Worksheet</a> · <a href="https://www.youtube.com/@AIFutureRobotics" target="_blank" rel="noopener" class="footer-yt">▶ Watch us on YouTube</a></p>
+      </div>
+    </footer>
+  </main>
+  <script>
+    let cart = [];
+    try {
+      cart = JSON.parse(localStorage.getItem('gp-cart')) || [];
+    } catch (e) { cart = []; }
+    const cartCount = document.querySelector('.cart-count');
+    const cartPanel = document.querySelector('.cart-panel');
+    const cartItems = document.querySelector('[data-cart-items]');
+    const checkout = document.querySelector('[data-checkout]');
+    const toast = document.querySelector('[data-toast]');
+    const requestModal = document.querySelector('[data-request-modal]');
+    const requestForm = document.querySelector('[data-request-form]');
+    const requestOpen = document.querySelector('[data-request-open]');
+    let toastTimer;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    function renderCart() {
+      cartCount.textContent = cart.length;
+      localStorage.setItem('gp-cart', JSON.stringify(cart));
+
+      if (!cart.length) {
+        cartItems.innerHTML = '<p>Your cart is empty.</p>';
+        checkout.href = 'mailto:hello@glitchprints.example?subject=3D%20Print%20Order';
+        return;
+      }
+
+      const totals = cart.reduce((items, item) => {
+        items[item.name] ||= { ...item, qty: 0 };
+        items[item.name].qty += 1;
+        return items;
+      }, {});
+
+      cartItems.innerHTML = Object.values(totals).map(item => `
+        <div class="cart-row">
+          <span>${item.name} x${item.qty}</span>
+          <strong>$${item.price * item.qty}+</strong>
+        </div>
+      `).join('');
+
+      const orderLines = Object.values(totals)
+        .map(item => `${item.name} x${item.qty} - from $${item.price * item.qty}`)
+        .join('%0A');
+      checkout.href = `mailto:hello@glitchprints.example?subject=3D%20Print%20Order&body=Hi%20GLITCH%20PRINTS%2C%0A%0AI%27d%20like%20to%20order%3A%0A${orderLines}%0A%0AName%3A%0APickup%20or%20shipping%3A`;
+    }
+
+    function openRequestForm() {
+      requestModal.classList.add('open');
+      requestModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      document.querySelector('#request-name').focus();
+    }
+
+    function closeRequestForm() {
+      requestModal.classList.remove('open');
+      requestModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      requestOpen.focus();
+    }
+
+    document.querySelectorAll('[data-add-to-cart]').forEach(button => {
+      button.addEventListener('click', () => {
+        cart.push({
+          name: button.dataset.name,
+          price: Number(button.dataset.price)
+        });
+        renderCart();
+        showToast(`${button.dataset.name} added to cart.`);
+      });
+    });
+
+    document.querySelectorAll('[data-details]').forEach(button => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.card');
+        const description = card.querySelector('p').textContent;
+        showToast(`${button.dataset.details}: ${description}`);
+      });
+    });
+
+    document.querySelector('[data-cart-toggle]').addEventListener('click', event => {
+      event.preventDefault();
+      cartPanel.classList.toggle('open');
+      cartPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    document.querySelector('[data-clear-cart]').addEventListener('click', () => {
+      cart.length = 0;
+      renderCart();
+      showToast('Cart cleared.');
+    });
+
+    requestOpen.addEventListener('click', openRequestForm);
+
+    document.querySelectorAll('[data-request-close]').forEach(button => {
+      button.addEventListener('click', closeRequestForm);
+    });
+
+    requestModal.addEventListener('click', event => {
+      if (event.target === requestModal) closeRequestForm();
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && requestModal.classList.contains('open')) {
+        closeRequestForm();
+      }
+    });
+
+    requestForm.addEventListener('submit', event => {
+      event.preventDefault();
+      const form = new FormData(requestForm);
+      const body = [
+        'Hi GLITCH PRINTS,',
+        '',
+        'I would like a quote for a custom 3D print.',
+        '',
+        `Name: ${form.get('name')}`,
+        `Email: ${form.get('email')}`,
+        `Print type: ${form.get('type')}`,
+        `Quantity: ${form.get('quantity')}`,
+        `Color: ${form.get('color') || 'Not specified'}`,
+        `Approx. size: ${form.get('size') || 'Not specified'}`,
+        '',
+        'Project details:',
+        form.get('details')
+      ].join('\n');
+
+      window.location.href = `mailto:hello@glitchprints.example?subject=Custom%203D%20Print%20Request&body=${encodeURIComponent(body)}`;
+      closeRequestForm();
+      requestForm.reset();
+      showToast('Request form ready to send.');
+    });
+
+    document.querySelector('[data-view-all]').addEventListener('click', event => {
+      event.preventDefault();
+      document.querySelector('#shop').scrollIntoView({ behavior: 'smooth' });
+      document.querySelectorAll('.card').forEach(card => {
+        card.classList.add('highlight');
+        setTimeout(() => card.classList.remove('highlight'), 1400);
+      });
+    });
+
+    /* ---- Custom Clicker builder ---- */
+    const CLICKER_BASE = 5;
+    const CLICKER_PER_CHAR = 1;
+
+    const CLICKER_LAYOUTS = {
+      row: { name: 'Straight Row', min: 2, max: 12, cols: 0 },
+      '2x2': { name: '2×2 Grid', min: 4, max: 4, cols: 2 },
+      '3x3': { name: '3×3 Grid', min: 9, max: 9, cols: 3 }
+    };
+
+    const clickerInput = document.querySelector('[data-clicker-input]');
+    const clickerPreview = document.querySelector('[data-clicker-preview]');
+    const clickerPrice = document.querySelector('[data-clicker-price]');
+    const clickerCounter = document.querySelector('[data-clicker-count]');
+    const clickerAdd = document.querySelector('[data-clicker-add]');
+    let clickerColor = '#00E5FF';
+    let clickerColorName = 'Cyan';
+    let clickerLayout = 'row';
+
+    function clickerChars() {
+      const layout = CLICKER_LAYOUTS[clickerLayout];
+      return [...clickerInput.value].filter(ch => ch.trim() !== '').slice(0, layout.max);
+    }
+
+    function makeTile(ch) {
+      const tile = document.createElement('button');
+      tile.type = 'button';
+      tile.className = 'clicker-tile';
+      tile.style.setProperty('--tile', clickerColor);
+      if (ch) {
+        tile.textContent = ch.toUpperCase();
+        tile.setAttribute('aria-label', `Clicker button ${ch}`);
+        tile.addEventListener('click', () => {
+          tile.classList.add('clicked');
+          setTimeout(() => tile.classList.remove('clicked'), 110);
+        });
+      } else {
+        tile.classList.add('ghost');
+        tile.textContent = '·';
+        tile.setAttribute('aria-label', 'Empty clicker slot');
+        tile.tabIndex = -1;
+      }
+      return tile;
+    }
+
+    function renderClicker() {
+      const layout = CLICKER_LAYOUTS[clickerLayout];
+      const chars = clickerChars();
+      const count = chars.length;
+
+      clickerInput.maxLength = layout.max;
+      clickerCounter.textContent = `${count} / ${layout.max}`;
+      clickerCounter.classList.toggle('maxed', count >= layout.max);
+
+      clickerPreview.classList.toggle('grid-2', layout.cols === 2);
+      clickerPreview.classList.toggle('grid-3', layout.cols === 3);
+
+      clickerPreview.innerHTML = '';
+      if (!count && layout.cols === 0) {
+        clickerPreview.innerHTML = '<span class="empty">Your clicker shows up here...</span>';
+      } else {
+        chars.forEach(ch => clickerPreview.appendChild(makeTile(ch)));
+        // grids always show the full shape; empty slots render as dashed ghosts
+        for (let i = count; i < (layout.cols ? layout.max : 0); i++) {
+          clickerPreview.appendChild(makeTile(null));
+        }
+      }
+
+      const price = count ? CLICKER_BASE + count * CLICKER_PER_CHAR : 0;
+      clickerPrice.textContent = `$${price}`;
+      clickerAdd.disabled = count < layout.min;
+      if (count >= layout.min) {
+        clickerAdd.textContent = 'Add to Cart';
+      } else if (layout.cols) {
+        clickerAdd.textContent = `Fill all ${layout.max} slots (${count} / ${layout.max})`;
+      } else {
+        clickerAdd.textContent = `Add to Cart (min ${layout.min})`;
+      }
+    }
+
+    clickerInput.addEventListener('input', renderClicker);
+
+    document.querySelectorAll('[data-layout]').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('[data-layout]').forEach(b => b.setAttribute('aria-pressed', 'false'));
+        button.setAttribute('aria-pressed', 'true');
+        clickerLayout = button.dataset.layout;
+        const layout = CLICKER_LAYOUTS[clickerLayout];
+        const chars = [...clickerInput.value].filter(ch => ch.trim() !== '');
+        if (chars.length > layout.max) {
+          clickerInput.value = chars.slice(0, layout.max).join('');
+          showToast(`${layout.name} holds ${layout.max} buttons — extra characters trimmed.`);
+        }
+        renderClicker();
+      });
+    });
+
+    document.querySelectorAll('[data-symbol]').forEach(button => {
+      button.addEventListener('click', () => {
+        const layout = CLICKER_LAYOUTS[clickerLayout];
+        if (clickerChars().length >= layout.max) {
+          showToast(`Max ${layout.max} characters for a ${layout.name.toLowerCase()}.`);
+          return;
+        }
+        clickerInput.value += button.dataset.symbol;
+        renderClicker();
+      });
+    });
+
+    document.querySelectorAll('.swatch').forEach(swatch => {
+      swatch.addEventListener('click', () => {
+        document.querySelectorAll('.swatch').forEach(s => s.setAttribute('aria-pressed', 'false'));
+        swatch.setAttribute('aria-pressed', 'true');
+        clickerColor = swatch.dataset.color;
+        clickerColorName = swatch.dataset.colorName;
+        renderClicker();
+      });
+    });
+
+    clickerAdd.addEventListener('click', () => {
+      const layout = CLICKER_LAYOUTS[clickerLayout];
+      const chars = clickerChars();
+      if (chars.length < layout.min) return;
+      const text = chars.join('');
+      cart.push({
+        name: `Custom Clicker "${text.toUpperCase()}" (${clickerColorName}, ${layout.name}, ${chars.length} buttons)`,
+        price: CLICKER_BASE + chars.length * CLICKER_PER_CHAR
+      });
+      renderCart();
+      showToast(`Custom Clicker "${text.toUpperCase()}" added to cart.`);
+    });
+
+    renderClicker();
+
+    document.querySelectorAll('.faq-toggle').forEach(button => {
+      button.addEventListener('click', () => {
+        const answer = button.nextElementSibling;
+        const isOpen = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', String(!isOpen));
+        answer.classList.toggle('open', !isOpen);
+      });
+    });
+
+    renderCart();
+  </script>
+</body>
+</html>
