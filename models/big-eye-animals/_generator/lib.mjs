@@ -27,12 +27,29 @@ const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a
 const norm = a => { const l = Math.hypot(...a); return a.map(x => x / l); };
 
 // ---------- the joint: a vertical pin inside a tented pocket, a flat ring around it. No supports, no bridges over 8 mm.
-export const J = { PIN: 2.0, RIN: 2.45, ROUT: 4.05, POCK: 4.5, ARC: 5.9, BITE: 6.7, RH: 3.0, PZ: 3.6, TW: 3.0, SLOT: 48, PHI: 25 };
+// Locking pin (17 Nov 2026): the first printed dragon came apart because the pin was a straight post and the ring sat on
+// the plate with nothing under it, so a link lifted straight off. Now the pin bulges in the middle (45° slopes, prints
+// without support) and the ring's hole is the pin's shape grown by GAP all round, so the ring is trapped above and below.
+// ROUT/POCK grew 0.25 mm to keep the ring wall over 1 mm around the wider hole.
+export const J = { PIN: 1.6, BULGE: 2.7, GAP: 0.45, RIN: 2.45, ROUT: 4.3, POCK: 4.75, ARC: 5.9, BITE: 6.7, RH: 3.0, PZ: 3.6, TW: 3.0, SLOT: 48, PHI: 25 };
 const circ = (px, r) => CrossSection.circle(r, 72).translate([px, 0]);
 const wedge = (px, deg, L) => { const a = deg * Math.PI / 180; return poly([[px, 0], [px - L * Math.cos(a), -L * Math.sin(a)], [px - 3 * L, 0], [px - L * Math.cos(a), L * Math.sin(a)]]); };
 export const frontRegion = px => poly([[px, -400], [px + 400, -400], [px + 400, 400], [px, 400]]).add(circ(px, J.ARC));
 export const rearRegion = px => wedge(px, 90 - J.PHI, 200).subtract(circ(px, J.BITE));
 export const tall = cs => cs.extrude(90).translate([0, 0, -1]);
+// pin radius by height: base PIN, out at 45° to BULGE, straight, back in at 45° to PIN, then straight to the top
+const pinR = z => { const a = J.BULGE - J.PIN, z1 = a, z2 = a + 0.6, z3 = 2 * a + 0.6; return z < 0 ? J.PIN : z < z1 ? J.PIN + z : z < z2 ? J.BULGE : z < z3 ? J.BULGE - (z - z2) : J.PIN; };
+// the pin grown by g in every direction (a ball of radius g rolled over it): the ring's hole
+function pinShape(px, g) {
+  const top = J.PZ + J.POCK + 0.3, pts = [[0, g ? -1 : 0]];
+  for (let z = g ? -1 : 0; z <= top + 1e-6; z += 0.05) {
+    let r = g ? 0 : pinR(z);
+    if (g) for (let dz = -g; dz <= g + 1e-9; dz += g / 12) r = Math.max(r, pinR(Math.min(top, Math.max(0, z + dz))) + Math.sqrt(Math.max(0, g * g - dz * dz)));
+    pts.push([r, z]);
+  }
+  pts.push([0, top]);
+  return Manifold.revolve(poly(pts), 72).translate([px, 0, 0]);
+}
 export function jointParts(px, { cap = false, flat = null } = {}) {
   // slot roof (support check 17 Nov 2026): the slot the tongue swings in used to have a flat 1.5 mm-wide ceiling
   // 0.6 mm above the tongue, an 8.4 mm bridge that could sag onto it. Now it is a 45° tent rising from both slot sides
@@ -46,9 +63,9 @@ export function jointParts(px, { cap = false, flat = null } = {}) {
   if (flat) roof = roof.trimByPlane([0, 0, -1], -flat);
   const pocket = U(cyl([px, 0, -1], J.POCK, J.PZ + 1), cyl([px, 0, J.PZ - 0.05], J.POCK, J.POCK, 0),
     wedge(px, J.SLOT, 12).extrude(J.PZ + 1).translate([0, 0, -1]), roof);
-  const pin = cyl([px, 0, 0], J.PIN, J.PZ + J.POCK + 0.3);
-  const ring = circ(px, J.ROUT).subtract(circ(px, J.RIN)).extrude(J.RH);
-  const tongue = Manifold.cube([J.BITE + 2.2 - J.RIN - 0.6, J.TW, J.RH]).translate([px - J.BITE - 2.2, -J.TW / 2, 0]);
+  const pin = pinShape(px, 0), hole = pinShape(px, J.GAP);
+  const ring = circ(px, J.ROUT).extrude(J.RH).subtract(hole);
+  const tongue = Manifold.cube([J.BITE + 2.2 - J.RIN - 0.6, J.TW, J.RH]).translate([px - J.BITE - 2.2, -J.TW / 2, 0]).subtract(hole);
   // shell that must be covered by the sculpt so the pocket never breaks through the skin
   const guard = U(cyl([px, 0, 0.2], J.POCK + 0.8, J.PZ), cyl([px, 0, J.PZ + 0.2], J.POCK + 0.8, J.POCK + 0.8, 0.3));
   // roofGuard: the roof lifted 1 mm along its ridge (|y| < 1.2, r < 5.4); if any of it is outside the piece, the tent would
@@ -208,15 +225,34 @@ export function flexi({ name, body, items = [], pins, post = [] }) {
 }
 
 // ---------- a bird: top half spins on a cone seat (shaft down to the plate keeps it captive), tail wags on a joint
+// SCALE.k < 1 shrinks the animal (minis) but keeps the spin seat and tail joint full size so they still print and move.
+// The tail shrinks about its root (x = -20) so it still meets the joint.
+export const SCALE = { k: 1 };
 export function bird({ name, egg, upper = [], lower = [], tail, pinX = -11.3, zc = 4, g = 0.7, items = [] }) {
+  const k = SCALE.k;
+  if (k !== 1) {
+    const sc = m => m.scale(k);
+    egg = sc(egg); upper = [upper].flat().map(sc); lower = [lower].flat().map(sc);
+    items = items.map(i => ({ ...i, m: i.m && sc(i.m), p: i.p && sc(i.p) }));
+    if (tail) tail = scaleAbout(tail, [-20, 0, 0], k);
+  }
   const R = 60, prof = (a, b) => Manifold.revolve(poly(a.concat(b)), 96);
   const Ureg = prof([[0, 0], [5, 0], [5, 1], [3, 3], [3, zc], [R, zc + R - 3]], [[R, 200], [0, 200]]);
   const Lreg = prof([[5 + g, 0], [R, 0], [R, zc + R - 3 - g]], [[3 + g, zc], [3 + g, 3], [5 + g, 1]]);
   const top = floorCut(U(egg, upper, items.filter(i => i.on === 'top' && i.m).map(i => i.m))).intersect(Ureg);
+  if (!tail) {   // spin only, no tail joint (octopus, 17 Nov 2026)
+    const base = floorCut(U(egg, lower, items.filter(i => i.on === 'base' && i.m).map(i => i.m))).intersect(Lreg);
+    const rep = { name, spinClash: [0, 30, 60, 90, 135, 180].map(a => +vol(top.rotate([0, 0, a]).intersect(base)).toFixed(3)) };
+    const total = U(top, base);
+    rep.pieces = [top, base].map(s => s.decompose().length); rep.totalPieces = total.decompose().length;
+    const col = paint(total, items.map(i => ({ ...i, p: (i.p || i.m).intersect(i.on === 'top' ? Ureg : Lreg) })));
+    return { name, ...col, segs: [top, base], rep };
+  }
   const jp = jointParts(pinX, { cap: true });
-  const rump = hull(cyl([pinX, 0, 0], J.ARC, 5), cyl([pinX, 0, 0], 3.4, 8.2));
+  const rump = hull(cyl([pinX, 0, 0], J.ARC, 5), cyl([pinX, 0, 0], 3.4, k < 1 ? 9.8 : 8.2));   // minis: taller so the roof over the pin stays thick
   let base = floorCut(U(egg, rump, lower, items.filter(i => i.on === 'base' && i.m).map(i => i.m))).intersect(Lreg);
-  const rep = { name, thinWall: [+vol(jp.guard.subtract(base).subtract(tall(wedge(pinX, J.SLOT + 12, 12)))).toFixed(2)] };
+  const thin = jp.guard.subtract(base).subtract(tall(wedge(pinX, J.SLOT + 12, 12)));
+  const rep = { name, thinWall: [+vol(thin).toFixed(2)] }; if (process.env.THINBOX && vol(thin) > 0.01) { const b = thin.boundingBox(); rep.thinBox = [...b.min, ...b.max].map(v => +v.toFixed(1)); }
   base = base.subtract(jp.pocket).add(jp.pin);
   const tl = floorCut(tail).intersect(tall(rearRegion(pinX))).add(jp.ring).add(jp.tongue);
   const lim = sgn => { let ok = 0; for (let a = 4; a <= 40; a += 4) { if (vol(rotZAbout(tl, pinX, sgn * a).intersect(base)) > 0.02) break; ok = a; } return ok; };

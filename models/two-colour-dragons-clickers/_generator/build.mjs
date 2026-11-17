@@ -1,6 +1,7 @@
 // node build.mjs [name ...]  -> ../dragons/*.3mf, ../clickers/*.3mf, ../stl/, ../previews/, report.json
 import fs from 'fs'; import path from 'path';
 import { DRAGONS } from './dragons.mjs';
+import { MINIS } from './dragons-mini.mjs';
 import { CLICKERS, fitTest, stemFitTest } from './clickers.mjs';
 import { loadTemplate, write3mf } from '../../big-eye-animals/_generator/mf.mjs';
 import { U, writeSTL, render, overhang, vol } from '../../big-eye-animals/_generator/lib.mjs';
@@ -12,7 +13,7 @@ for (const d of ['dragons', 'clickers', 'stl', 'previews']) fs.mkdirSync(path.jo
 const repFile = path.join(here, 'report.json'), report = fs.existsSync(repFile) ? JSON.parse(fs.readFileSync(repFile)) : {};
 const TEMPLATE = process.env.BAMBU_TEMPLATE || path.join(process.env.USERPROFILE, 'Downloads', 'Cardboard Perforation Tool.3mf');
 const tpl = await loadTemplate(TEMPLATE);
-const jobs = { ...Object.fromEntries(Object.entries(DRAGONS).map(([k, f]) => [k, ['dragons', f]])), ...Object.fromEntries(Object.entries(CLICKERS).map(([k, f]) => [k, ['clickers', f]])), 'switch-fit-test': ['clickers', fitTest], 'stem-fit-test': ['clickers', stemFitTest] };
+const jobs = { ...Object.fromEntries(Object.entries({ ...DRAGONS, ...MINIS }).map(([k, f]) => [k, ['dragons', f]])), ...Object.fromEntries(Object.entries(CLICKERS).map(([k, f]) => [k, ['clickers', f]])), 'switch-fit-test': ['clickers', fitTest], 'stem-fit-test': ['clickers', stemFitTest] };
 const names = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(jobs);
 
 for (const n of names) {

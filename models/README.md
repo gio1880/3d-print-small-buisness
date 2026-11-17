@@ -4,8 +4,9 @@ The 3D models behind the shop: Bambu Studio projects, STLs for other slicers, pr
 
 | Folder / file | What |
 |---|---|
-| `big-eye-animals/` | 12 articulated big-eye animals + a joint test, 3 colours (body, white, black) |
-| `two-colour-dragons-clickers/` | 2 articulated dragons + keyboard-switch fidget clickers, 2 colours |
+| `big-eye-animals/` | 12 articulated big-eye animals + a joint test, an octopus, 1.3 in minis of every animal and 2.5 in short wigglers, 3 colours (body, white, black) |
+| `two-colour-dragons-clickers/` | 2 articulated dragons (plus mini and short versions) + 30 two-piece keyboard-switch fidget clickers, 2 colours |
+| `slice-3mf.ps1` | Slices a list of .3mf files with Bambu Studio and writes time + grams to a CSV |
 | `PRODUCTS.md` | Catalog of designs: size, what moves, print time, grams, status |
 | `FILAMENT.md` | Which colour goes in which AMS slot for every model, with grams |
 | `PRINTERS.md` | The printers and which file each one uses |

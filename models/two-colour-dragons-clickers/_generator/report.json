@@ -9,7 +9,7 @@
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "gold",
    "blue"
@@ -17,67 +17,143 @@
   "size": [
    58,
    26,
-   17.9
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 8.58,
+   "body": 7.23,
    "accent": 0.096
   },
   "overhang": {
    "area": 107.9,
    "worst": [
-    "0,z12:26.0",
+    "0,z8:26.0",
     "40,z0:16.3",
-    "-10,z12:12.1",
-    "10,z12:12.1",
+    "-10,z8:12.1",
+    "10,z8:12.1",
     "20,z0:11.6",
     "30,z0:10.4"
    ]
   },
-  "tris": 3448
+  "tris": 3932
  },
  "circle": {
   "kind": "clickers",
   "name": "circle",
   "style": "lid",
-  "scale": 1.16,
+  "scale": 1.06,
   "basePieces": 1,
   "capPieces": 1,
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "gold",
    "turquoise"
   ],
   "size": [
-   71,
-   32.5,
-   17.9
+   65.4,
+   29.7,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 11.91,
-   "accent": 0.12
+   "body": 7.73,
+   "accent": 0.099
   },
   "overhang": {
-   "area": 110.9,
+   "area": 105.6,
    "worst": [
-    "0,z12:26.0",
-    "50,z0:14.8",
-    "-10,z12:12.1",
-    "10,z12:12.1",
-    "30,z0:10.1",
-    "20,z0:9.8"
+    "0,z8:26.0",
+    "-10,z8:12.1",
+    "10,z8:12.1",
+    "50,z0:10.4",
+    "30,z0:9.1",
+    "20,z0:8.7"
    ]
   },
-  "tris": 7064
+  "tris": 7676
  },
  "triangle": {
   "kind": "clickers",
   "name": "triangle",
+  "style": "lid",
+  "scale": 1.06,
+  "basePieces": 1,
+  "capPieces": 1,
+  "clashRest": 0,
+  "clashPressed": 0,
+  "housingPressed": 0,
+  "height": 21.5,
+  "colours": [
+   "gold",
+   "orange"
+  ],
+  "size": [
+   97.6,
+   51.9,
+   15
+  ],
+  "zMin": -0.001,
+  "cm3": {
+   "body": 13.81,
+   "accent": 0.166
+  },
+  "overhang": {
+   "area": 132.6,
+   "worst": [
+    "0,z8:26.0",
+    "40,z0:18.3",
+    "60,z0:16.0",
+    "-10,z8:12.1",
+    "10,z8:12.1",
+    "70,z0:10.1"
+   ]
+  },
+  "tris": 6692
+ },
+ "star": {
+  "kind": "clickers",
+  "name": "star",
+  "style": "lid",
+  "scale": 0.79,
+  "basePieces": 1,
+  "capPieces": 1,
+  "clashRest": 0,
+  "clashPressed": 0,
+  "housingPressed": 0,
+  "height": 21.5,
+  "colours": [
+   "blue",
+   "gold"
+  ],
+  "size": [
+   95.6,
+   47,
+   15
+  ],
+  "zMin": -0.001,
+  "cm3": {
+   "body": 12.9,
+   "accent": 0.114
+  },
+  "overhang": {
+   "area": 138.2,
+   "worst": [
+    "0,z8:26.0",
+    "60,z0:17.4",
+    "40,z0:12.1",
+    "-10,z8:12.1",
+    "10,z8:12.1",
+    "50,z0:11.7"
+   ]
+  },
+  "tris": 11376
+ },
+ "heart": {
+  "kind": "clickers",
+  "name": "heart",
   "style": "lid",
   "scale": 1.14,
   "basePieces": 1,
@@ -85,261 +161,185 @@
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "gold",
    "orange"
   ],
   "size": [
-   105,
-   56.1,
-   17.9
+   86.3,
+   45.4,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 20.41,
-   "accent": 0.196
+   "body": 13.08,
+   "accent": 0.148
   },
   "overhang": {
-   "area": 139.3,
+   "area": 124.9,
    "worst": [
-    "0,z12:26.0",
-    "50,z0:18.3",
-    "70,z0:17.0",
-    "-10,z12:12.1",
-    "10,z12:12.1",
-    "60,z0:10.4"
+    "0,z8:26.0",
+    "30,z0:14.2",
+    "-10,z8:12.1",
+    "10,z8:12.1",
+    "60,z0:11.3",
+    "50,z0:10.8"
    ]
   },
-  "tris": 6144
- },
- "star": {
-  "kind": "clickers",
-  "name": "star",
-  "style": "lid",
-  "scale": 1,
-  "basePieces": 1,
-  "capPieces": 1,
-  "clashRest": 0,
-  "clashPressed": 0,
-  "housingPressed": 0,
-  "height": 25.5,
-  "colours": [
-   "blue",
-   "gold"
-  ],
-  "size": [
-   119.1,
-   59.3,
-   17.9
-  ],
-  "zMin": -0.001,
-  "cm3": {
-   "body": 27.78,
-   "accent": 0.193
-  },
-  "overhang": {
-   "area": 161.4,
-   "worst": [
-    "0,z12:26.0",
-    "80,z0:18.1",
-    "70,z0:13.7",
-    "50,z0:13.3",
-    "40,z0:12.2",
-    "-10,z12:12.1"
-   ]
-  },
-  "tris": 11034
- },
- "heart": {
-  "kind": "clickers",
-  "name": "heart",
-  "style": "lid",
-  "scale": 1.24,
-  "basePieces": 1,
-  "capPieces": 1,
-  "clashRest": 0,
-  "clashPressed": 0,
-  "housingPressed": 0,
-  "height": 25.5,
-  "colours": [
-   "gold",
-   "orange"
-  ],
-  "size": [
-   93.3,
-   49.3,
-   17.9
-  ],
-  "zMin": -0.001,
-  "cm3": {
-   "body": 19.66,
-   "accent": 0.177
-  },
-  "overhang": {
-   "area": 131.5,
-   "worst": [
-    "0,z12:26.0",
-    "60,z0:15.5",
-    "40,z0:15.5",
-    "-10,z12:12.1",
-    "10,z12:12.1",
-    "30,z0:8.7"
-   ]
-  },
-  "tris": 27888
+  "tris": 28552
  },
  "hexagon": {
   "kind": "clickers",
   "name": "hexagon",
   "style": "lid",
-  "scale": 1.04,
+  "scale": 1,
   "basePieces": 1,
   "capPieces": 1,
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "gold",
    "turquoise"
   ],
   "size": [
-   76.8,
-   31.3,
-   17.9
+   74.1,
+   30.1,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 12.26,
-   "accent": 0.162
+   "body": 9.15,
+   "accent": 0.148
   },
   "overhang": {
-   "area": 113.8,
+   "area": 111.3,
    "worst": [
-    "0,z12:26.0",
-    "30,z0:13.7",
-    "40,z0:13.0",
-    "-10,z12:12.1",
-    "10,z12:12.1",
-    "50,z0:7.6"
+    "0,z8:26.0",
+    "50,z0:13.1",
+    "30,z0:13.1",
+    "40,z0:12.6",
+    "-10,z8:12.1",
+    "10,z8:12.1"
    ]
   },
-  "tris": 6064
+  "tris": 6172
  },
  "gear": {
   "kind": "clickers",
   "name": "gear",
   "style": "lid",
-  "scale": 1,
+  "scale": 0.93,
   "basePieces": 1,
   "capPieces": 1,
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "blue",
    "gold"
   ],
   "size": [
-   87.6,
-   39.6,
-   17.9
+   82,
+   36.9,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 15.61,
-   "accent": 0.14
+   "body": 10.67,
+   "accent": 0.12
   },
   "overhang": {
-   "area": 148.3,
+   "area": 141.5,
    "worst": [
-    "0,z12:26.0",
-    "60,z0:18.1",
-    "30,z0:17.3",
-    "40,z0:13.8",
-    "50,z0:13.1",
-    "-10,z12:12.1"
+    "0,z8:26.0",
+    "30,z0:18.1",
+    "60,z0:16.1",
+    "50,z0:13.5",
+    "40,z0:13.0",
+    "-10,z8:12.1"
    ]
   },
-  "tris": 48788
+  "tris": 48900
  },
  "star-of-david": {
   "kind": "clickers",
   "name": "star-of-david",
   "style": "lid",
-  "scale": 1,
+  "scale": 0.8,
   "basePieces": 1,
   "capPieces": 1,
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "gold",
    "blue"
   ],
   "size": [
-   102.9,
-   55.6,
-   17.9
+   83.9,
+   44.7,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 23.95,
-   "accent": 0.327
+   "body": 11.37,
+   "accent": 0.204
   },
   "overhang": {
-   "area": 163.8,
+   "area": 141.4,
    "worst": [
-    "0,z12:26.0",
-    "70,z0:17.4",
-    "40,z0:17.3",
-    "50,z0:13.6",
-    "60,z0:12.7",
-    "-10,z12:12.1"
+    "0,z8:26.0",
+    "60,z0:19.7",
+    "30,z0:19.7",
+    "-10,z8:12.1",
+    "10,z8:12.1",
+    "40,z0:10.6"
    ]
   },
-  "tris": 14662
+  "tris": 15276
  },
  "flower": {
   "kind": "clickers",
   "name": "flower",
   "style": "lid",
-  "scale": 1,
+  "scale": 0.85,
   "basePieces": 1,
   "capPieces": 1,
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "gold",
    "orange"
   ],
   "size": [
-   100.4,
-   42.9,
-   17.9
+   85.8,
+   36.3,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 23.04,
-   "accent": 0.357
+   "body": 12.41,
+   "accent": 0.249
   },
   "overhang": {
-   "area": 152.3,
+   "area": 136.4,
    "worst": [
-    "0,z12:26.0",
-    "70,z0:18.6",
-    "40,z0:18.1",
-    "-10,z12:12.1",
-    "10,z12:12.1",
-    "50,z0:10.7"
+    "0,z8:26.0",
+    "30,z0:18.1",
+    "60,z0:17.5",
+    "-10,z8:12.1",
+    "10,z8:12.1",
+    "50,z0:9.8"
    ]
   },
-  "tris": 77986
+  "tris": 79098
  },
  "donut": {
   "kind": "clickers",
@@ -351,7 +351,7 @@
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "gold",
    "turquoise"
@@ -359,29 +359,67 @@
   "size": [
    72.4,
    33.2,
-   17.9
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 12.4,
+   "body": 10.24,
    "accent": 0.369
   },
   "overhang": {
    "area": 112.2,
    "worst": [
-    "0,z12:26.0",
+    "0,z8:26.0",
     "50,z0:12.2",
-    "-10,z12:12.1",
-    "10,z12:12.1",
+    "-10,z8:12.1",
+    "10,z8:12.1",
     "30,z0:10.3",
     "20,z0:9.6"
    ]
   },
-  "tris": 7096
+  "tris": 7580
  },
  "paw": {
   "kind": "clickers",
   "name": "paw",
+  "style": "lid",
+  "scale": 1.02,
+  "basePieces": 1,
+  "capPieces": 1,
+  "clashRest": 0,
+  "clashPressed": 0,
+  "housingPressed": 0,
+  "height": 21.5,
+  "colours": [
+   "turquoise",
+   "blue"
+  ],
+  "size": [
+   87.6,
+   55.2,
+   15
+  ],
+  "zMin": -0.001,
+  "cm3": {
+   "body": 16.08,
+   "accent": 0.196
+  },
+  "overhang": {
+   "area": 131.1,
+   "worst": [
+    "0,z8:26.0",
+    "60,z0:15.5",
+    "30,z0:15.3",
+    "-10,z8:12.1",
+    "10,z8:12.1",
+    "40,z0:10.0"
+   ]
+  },
+  "tris": 97976
+ },
+ "shield": {
+  "kind": "clickers",
+  "name": "shield",
   "style": "lid",
   "scale": 1.1,
   "basePieces": 1,
@@ -389,109 +427,71 @@
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
-  "colours": [
-   "turquoise",
-   "blue"
-  ],
-  "size": [
-   93.8,
-   59.3,
-   17.9
-  ],
-  "zMin": -0.001,
-  "cm3": {
-   "body": 23.47,
-   "accent": 0.226
-  },
-  "overhang": {
-   "area": 137.2,
-   "worst": [
-    "0,z12:26.0",
-    "30,z0:13.8",
-    "70,z0:13.5",
-    "-10,z12:12.1",
-    "10,z12:12.1",
-    "60,z0:11.1"
-   ]
-  },
-  "tris": 97378
- },
- "shield": {
-  "kind": "clickers",
-  "name": "shield",
-  "style": "lid",
-  "scale": 1.18,
-  "basePieces": 1,
-  "capPieces": 1,
-  "clashRest": 0,
-  "clashPressed": 0,
-  "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "blue",
    "gold"
   ],
   "size": [
-   83.9,
-   54.7,
-   17.9
+   78.5,
+   50.9,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 21.38,
-   "accent": 0.188
+   "body": 14.66,
+   "accent": 0.161
   },
   "overhang": {
-   "area": 135.1,
+   "area": 129.1,
    "worst": [
-    "0,z12:26.0",
-    "50,z0:14.2",
-    "40,z0:14.2",
-    "60,z0:14.0",
-    "30,z0:14.0",
-    "-10,z12:12.1"
+    "0,z8:26.0",
+    "50,z0:17.7",
+    "30,z0:12.4",
+    "-10,z8:12.1",
+    "10,z8:12.1",
+    "20,z0:10.1"
    ]
   },
-  "tris": 6368
+  "tris": 6868
  },
  "keychain-tag": {
   "kind": "clickers",
   "name": "keychain-tag",
   "style": "lid",
-  "scale": 1,
+  "scale": 0.93,
   "basePieces": 1,
   "capPieces": 1,
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "gold",
    "blue"
   ],
   "size": [
-   60,
-   54,
-   17.9
+   56,
+   50,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 16.52,
-   "accent": 0.144
+   "body": 11.19,
+   "accent": 0.122
   },
   "overhang": {
-   "area": 126.1,
+   "area": 120.5,
    "worst": [
-    "0,z12:26.0",
-    "20,z0:18.0",
-    "50,z0:15.3",
-    "-10,z12:12.1",
-    "10,z12:12.1",
-    "40,z0:9.9"
+    "0,z8:26.0",
+    "40,z0:16.7",
+    "20,z0:16.7",
+    "30,z0:13.4",
+    "-10,z8:12.1",
+    "10,z8:12.1"
    ]
   },
-  "tris": 4400
+  "tris": 4900
  },
  "hamburger": {
   "kind": "clickers",
@@ -503,7 +503,7 @@
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 30.4,
+  "height": 26.4,
   "colours": [
    "gold",
    "orange"
@@ -511,12 +511,12 @@
   "size": [
    72.4,
    33.6,
-   17.9
+   13.9
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 14.1,
-   "accent": 1.888
+   "body": 11.98,
+   "accent": 2.086
   },
   "overhang": {
    "area": 387.5,
@@ -526,10 +526,10 @@
     "40,z0:36.8",
     "50,z4:33.9",
     "30,z4:28.8",
-    "0,z12:26.0"
+    "0,z8:26.0"
    ]
   },
-  "tris": 13096
+  "tris": 13580
  },
  "switch-fit-test": {
   "kind": "clickers",
@@ -564,7 +564,22 @@
    0,
    0,
    0,
-   0.07
+   0.81
+  ],
+  "roofCap": [
+   "tent",
+   "tent",
+   "tent",
+   "tent",
+   5.6
+  ],
+  "roofTried": [
+   "4:tent skin",
+   "4:7.6 skin",
+   "4:7.2 skin",
+   "4:6.8 skin",
+   "4:6.4 bad",
+   "4:6 bad"
   ],
   "swing": [
    [
@@ -608,21 +623,21 @@
   ],
   "zMin": 0,
   "cm3": {
-   "body": 15.41,
+   "body": 15.06,
    "accent": 1.259
   },
   "overhang": {
-   "area": 165,
+   "area": 114.6,
    "worst": [
     "20,z0:38.3",
-    "-30,z4:16.6",
-    "-40,z4:14.2",
     "30,z0:13.9",
-    "-20,z4:13.3",
-    "-50,z4:11.2"
+    "-50,z4:10.6",
+    "30,z4:9.9",
+    "10,z4:6.3",
+    "0,z20:5.8"
    ]
   },
-  "tris": 22350
+  "tris": 160966
  },
  "puff": {
   "kind": "dragons",
@@ -632,7 +647,13 @@
    0,
    0,
    0,
-   0.08
+   0.89
+  ],
+  "roofCap": [
+   "tent",
+   "tent",
+   "tent",
+   "tent"
   ],
   "swing": [
    [
@@ -671,287 +692,287 @@
   ],
   "zMin": 0,
   "cm3": {
-   "body": 16.2,
-   "accent": 1.622
+   "body": 15.92,
+   "accent": 1.608
   },
   "overhang": {
-   "area": 129.5,
+   "area": 74.4,
    "worst": [
     "20,z0:32.5",
-    "-30,z4:17.2",
-    "-20,z4:13.3",
-    "-50,z0:13.0",
-    "-40,z4:11.8",
-    "0,z4:9.3"
+    "-10,z0:5.6",
+    "10,z4:5.3",
+    "-50,z0:5.3",
+    "30,z4:5.2",
+    "20,z4:5.2"
    ]
   },
-  "tris": 18922
+  "tris": 129846
  },
  "pizza": {
   "kind": "clickers",
   "name": "pizza",
   "style": "lid",
-  "scale": 1.04,
+  "scale": 0.96,
   "basePieces": 1,
   "capPieces": 1,
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "tan",
    "red"
   ],
   "size": [
-   109.9,
-   66.7,
-   17.9
+   101.7,
+   61.5,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 28.84,
-   "accent": 0.111
+   "body": 19.33,
+   "accent": 0.094
   },
   "overhang": {
-   "area": 201.4,
+   "area": 185.8,
    "worst": [
-    "50,z0:38.8",
-    "70,z0:38.7",
-    "0,z12:26.0",
-    "80,z0:16.2",
-    "40,z0:15.3",
-    "-10,z12:12.1"
+    "50,z0:36.1",
+    "60,z0:33.8",
+    "0,z8:26.0",
+    "70,z0:14.5",
+    "40,z0:14.2",
+    "-10,z8:12.1"
    ]
   },
-  "tris": 10296
+  "tris": 10732
  },
  "cookie": {
   "kind": "clickers",
   "name": "cookie",
   "style": "lid",
-  "scale": 1.04,
+  "scale": 1,
   "basePieces": 1,
   "capPieces": 1,
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "tan",
    "brown"
   ],
   "size": [
-   75.9,
-   35.3,
-   17.9
+   73.2,
+   33.9,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 13.67,
-   "accent": 0.075
+   "body": 10.2,
+   "accent": 0.07
   },
   "overhang": {
-   "area": 116.4,
+   "area": 113.9,
    "worst": [
-    "0,z12:26.0",
-    "30,z0:12.9",
-    "-10,z12:12.1",
-    "10,z12:12.1",
-    "50,z0:11.0",
-    "40,z0:8.6"
+    "0,z8:26.0",
+    "50,z0:12.7",
+    "-10,z8:12.1",
+    "10,z8:12.1",
+    "30,z0:10.7",
+    "20,z0:9.3"
    ]
   },
-  "tris": 13208
+  "tris": 13230
  },
  "cupcake": {
   "kind": "clickers",
   "name": "cupcake",
   "style": "lid",
-  "scale": 1,
+  "scale": 0.86,
   "basePieces": 1,
   "capPieces": 1,
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "brown",
    "pink"
   ],
   "size": [
-   84,
-   52,
-   17.9
+   73,
+   44.7,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 22.53,
-   "accent": 0.596
+   "body": 12.63,
+   "accent": 0.438
   },
   "overhang": {
-   "area": 138.4,
+   "area": 125.9,
    "worst": [
-    "0,z12:26.0",
-    "60,z0:18.2",
-    "30,z0:18.1",
-    "-10,z12:12.1",
-    "10,z12:12.1",
-    "40,z0:11.2"
+    "0,z8:26.0",
+    "50,z0:15.1",
+    "40,z0:14.3",
+    "30,z0:14.2",
+    "-10,z8:12.1",
+    "10,z8:12.1"
    ]
   },
-  "tris": 34588
+  "tris": 35184
  },
  "ice-cream": {
   "kind": "clickers",
   "name": "ice-cream",
   "style": "lid",
-  "scale": 1,
+  "scale": 0.9,
   "basePieces": 1,
   "capPieces": 1,
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "tan",
    "pink"
   ],
   "size": [
-   72.4,
-   76.9,
-   17.9
+   66,
+   69.5,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 19.4,
-   "accent": 0.503
+   "body": 12.29,
+   "accent": 0.409
   },
   "overhang": {
-   "area": 197.1,
+   "area": 177.7,
    "worst": [
-    "40,z0:44.5",
-    "30,z0:34.3",
-    "50,z0:28.1",
-    "0,z12:26.0",
-    "-10,z12:12.1",
-    "10,z12:12.1"
+    "40,z0:40.5",
+    "30,z0:40.0",
+    "0,z8:26.0",
+    "-10,z8:12.1",
+    "10,z8:12.1",
+    "50,z0:11.3"
    ]
   },
-  "tris": 27004
+  "tris": 27460
  },
  "strawberry": {
   "kind": "clickers",
   "name": "strawberry",
   "style": "lid",
-  "scale": 1,
+  "scale": 0.89,
   "basePieces": 1,
   "capPieces": 1,
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "red",
    "lightgreen"
   ],
   "size": [
-   84,
-   49,
-   17.9
+   75.3,
+   43.5,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 19.16,
-   "accent": 0.102
+   "body": 11.68,
+   "accent": 0.08
   },
   "overhang": {
-   "area": 168.6,
+   "area": 151.6,
    "worst": [
-    "0,z12:26.0",
-    "60,z0:25.6",
-    "30,z0:24.8",
-    "40,z0:20.5",
-    "50,z0:19.7",
-    "-10,z12:12.1"
+    "0,z8:26.0",
+    "30,z0:25.3",
+    "50,z0:21.3",
+    "40,z0:16.8",
+    "-10,z8:12.1",
+    "10,z8:12.1"
    ]
   },
-  "tris": 47544
+  "tris": 47292
  },
  "watermelon": {
   "kind": "clickers",
   "name": "watermelon",
   "style": "lid",
-  "scale": 1,
+  "scale": 0.9,
   "basePieces": 1,
   "capPieces": 1,
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "red",
    "darkgreen"
   ],
   "size": [
-   117.9,
-   30,
-   17.9
+   106.6,
+   27,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 19.84,
-   "accent": 0.143
+   "body": 12.48,
+   "accent": 0.114
   },
   "overhang": {
-   "area": 169,
+   "area": 153.9,
    "worst": [
-    "0,z12:26.0",
-    "50,z0:22.1",
-    "70,z0:19.8",
-    "80,z0:15.1",
-    "40,z0:14.9",
-    "-10,z12:12.1"
+    "0,z8:26.0",
+    "60,z0:18.8",
+    "50,z0:17.7",
+    "40,z0:13.4",
+    "70,z0:13.0",
+    "-10,z8:12.1"
    ]
   },
-  "tris": 14358
+  "tris": 14640
  },
  "taco": {
   "kind": "clickers",
   "name": "taco",
   "style": "lid",
-  "scale": 1.14,
+  "scale": 1.06,
   "basePieces": 1,
   "capPieces": 1,
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "gold",
    "lightgreen"
   ],
   "size": [
-   119.9,
-   36.5,
-   17.9
+   112,
+   33.9,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 24.58,
-   "accent": 0.201
+   "body": 16.87,
+   "accent": 0.173
   },
   "overhang": {
-   "area": 206.7,
+   "area": 192.2,
    "worst": [
-    "50,z0:37.9",
-    "70,z0:37.3",
-    "0,z12:26.0",
-    "40,z0:14.3",
-    "-10,z12:12.1",
-    "10,z12:12.1"
+    "70,z0:34.3",
+    "50,z0:33.9",
+    "0,z8:26.0",
+    "80,z0:13.9",
+    "40,z0:12.8",
+    "-10,z8:12.1"
    ]
   },
-  "tris": 53092
+  "tris": 52236
  },
  "sushi": {
   "kind": "clickers",
@@ -963,7 +984,7 @@
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "black",
    "white"
@@ -971,253 +992,253 @@
   "size": [
    70,
    32,
-   17.9
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 11.2,
+   "body": 9.28,
    "accent": 0.323
   },
   "overhang": {
    "area": 137.1,
    "worst": [
-    "0,z12:26.0",
+    "0,z8:26.0",
     "50,z0:25.2",
     "30,z0:21.1",
     "40,z0:13.0",
-    "-10,z12:12.1",
-    "10,z12:12.1"
+    "-10,z8:12.1",
+    "10,z8:12.1"
    ]
   },
-  "tris": 10616
+  "tris": 11100
  },
  "bee": {
   "kind": "clickers",
   "name": "bee",
   "style": "lid",
-  "scale": 1.08,
+  "scale": 1,
   "basePieces": 1,
   "capPieces": 1,
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "gold",
    "black"
   ],
   "size": [
-   116.5,
-   51.3,
-   17.9
+   108.6,
+   47.6,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 23.4,
-   "accent": 0.3
+   "body": 15.94,
+   "accent": 0.257
   },
   "overhang": {
-   "area": 145.5,
+   "area": 138.6,
    "worst": [
-    "0,z12:26.0",
-    "70,z0:13.1",
-    "50,z0:13.0",
-    "-10,z12:12.1",
-    "10,z12:12.1",
-    "40,z0:11.8"
+    "0,z8:26.0",
+    "40,z0:14.4",
+    "70,z0:13.3",
+    "-10,z8:12.1",
+    "10,z8:12.1",
+    "80,z0:11.1"
    ]
   },
-  "tris": 42056
+  "tris": 41826
  },
  "ladybug": {
   "kind": "clickers",
   "name": "ladybug",
   "style": "lid",
-  "scale": 1.08,
+  "scale": 1,
   "basePieces": 1,
   "capPieces": 1,
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "red",
    "black"
   ],
   "size": [
-   77.3,
-   47.5,
-   17.9
+   71.9,
+   43.9,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 18.24,
-   "accent": 0.183
+   "body": 12.29,
+   "accent": 0.155
   },
   "overhang": {
-   "area": 125.5,
+   "area": 119.8,
    "worst": [
-    "0,z12:26.0",
-    "30,z0:14.9",
-    "50,z0:12.2",
-    "-10,z12:12.1",
-    "10,z12:12.1",
-    "60,z0:10.0"
+    "0,z8:26.0",
+    "50,z0:16.1",
+    "30,z0:13.0",
+    "-10,z8:12.1",
+    "10,z8:12.1",
+    "20,z0:9.7"
    ]
   },
-  "tris": 26796
+  "tris": 26504
  },
  "frog": {
   "kind": "clickers",
   "name": "frog",
   "style": "lid",
-  "scale": 1,
+  "scale": 0.9,
   "basePieces": 1,
   "capPieces": 1,
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "lightgreen",
    "darkgreen"
   ],
   "size": [
-   90,
-   40.8,
-   17.9
+   82,
+   36.9,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 20.38,
-   "accent": 0.085
+   "body": 13.04,
+   "accent": 0.069
   },
   "overhang": {
-   "area": 135.2,
+   "area": 127.1,
    "worst": [
-    "0,z12:26.0",
-    "30,z0:16.1",
-    "-10,z12:12.1",
-    "10,z12:12.1",
-    "70,z0:11.2",
-    "60,z0:10.1"
+    "0,z8:26.0",
+    "30,z0:16.8",
+    "60,z0:15.4",
+    "-10,z8:12.1",
+    "10,z8:12.1",
+    "40,z0:9.6"
    ]
   },
-  "tris": 40244
+  "tris": 40030
  },
  "panda": {
   "kind": "clickers",
   "name": "panda",
   "style": "lid",
-  "scale": 1,
+  "scale": 0.91,
   "basePieces": 1,
   "capPieces": 1,
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "white",
    "black"
   ],
   "size": [
-   89.2,
-   44.6,
-   17.9
+   82,
+   40.7,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 21.96,
-   "accent": 0.234
+   "body": 14.38,
+   "accent": 0.194
   },
   "overhang": {
-   "area": 138,
+   "area": 130.4,
    "worst": [
-    "0,z12:26.0",
-    "30,z0:17.9",
-    "-10,z12:12.1",
-    "10,z12:12.1",
-    "60,z0:11.8",
-    "70,z0:11.3"
+    "0,z8:26.0",
+    "30,z0:18.7",
+    "60,z0:16.8",
+    "-10,z8:12.1",
+    "10,z8:12.1",
+    "50,z0:9.1"
    ]
   },
-  "tris": 44468
+  "tris": 45250
  },
  "cat-face": {
   "kind": "clickers",
   "name": "cat-face",
   "style": "lid",
-  "scale": 1,
+  "scale": 0.96,
   "basePieces": 1,
   "capPieces": 1,
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "pumpkin",
    "white"
   ],
   "size": [
-   84,
-   43.3,
-   17.9
+   80.8,
+   41.5,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 19.02,
-   "accent": 0.118
+   "body": 14.03,
+   "accent": 0.108
   },
   "overhang": {
-   "area": 136.2,
+   "area": 132.6,
    "worst": [
-    "0,z12:26.0",
-    "30,z0:20.6",
-    "60,z0:20.6",
-    "-10,z12:12.1",
-    "10,z12:12.1",
-    "50,z0:8.0"
+    "0,z8:26.0",
+    "30,z0:19.4",
+    "60,z0:16.9",
+    "-10,z8:12.1",
+    "10,z8:12.1",
+    "50,z0:9.2"
    ]
   },
-  "tris": 28244
+  "tris": 29010
  },
  "turtle": {
   "kind": "clickers",
   "name": "turtle",
   "style": "lid",
-  "scale": 1,
+  "scale": 0.92,
   "basePieces": 1,
   "capPieces": 1,
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 25.5,
+  "height": 21.5,
   "colours": [
    "darkgreen",
    "lightgreen"
   ],
   "size": [
-   94.6,
-   50.6,
-   17.9
+   87.3,
+   46.5,
+   15
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 18.93,
-   "accent": 0.248
+   "body": 12.48,
+   "accent": 0.206
   },
   "overhang": {
-   "area": 189.6,
+   "area": 175.6,
    "worst": [
-    "0,z12:26.0",
-    "60,z0:23.1",
-    "50,z0:22.7",
-    "40,z0:22.1",
-    "70,z0:18.2",
-    "30,z0:17.7"
+    "0,z8:26.0",
+    "60,z0:25.1",
+    "30,z0:22.1",
+    "50,z0:21.4",
+    "40,z0:18.0",
+    "-10,z8:12.1"
    ]
   },
-  "tris": 68610
+  "tris": 68588
  },
  "macaron": {
   "kind": "clickers",
@@ -1229,7 +1250,7 @@
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 30.4,
+  "height": 26.4,
   "colours": [
    "pink",
    "white"
@@ -1237,12 +1258,12 @@
   "size": [
    74.2,
    34.5,
-   17.9
+   13.9
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 15.79,
-   "accent": 1.414
+   "body": 13.5,
+   "accent": 1.579
   },
   "overhang": {
    "area": 409.1,
@@ -1252,10 +1273,10 @@
     "40,z0:36.8",
     "30,z4:31.0",
     "50,z4:27.5",
-    "0,z12:26.0"
+    "0,z8:26.0"
    ]
   },
-  "tris": 12120
+  "tris": 12604
  },
  "stem-fit-test": {
   "kind": "clickers",
@@ -1291,7 +1312,7 @@
   "clashRest": 0,
   "clashPressed": 0,
   "housingPressed": 0,
-  "height": 28.4,
+  "height": 24.4,
   "colours": [
    "brown",
    "white"
@@ -1299,24 +1320,227 @@
   "size": [
    72,
    33,
-   17.9
+   13.9
   ],
   "zMin": -0.001,
   "cm3": {
-   "body": 14.28,
-   "accent": 1.442
+   "body": 11.99,
+   "accent": 1.608
   },
   "overhang": {
-   "area": 321.4,
+   "area": 319.2,
    "worst": [
-    "50,z0:83.6",
-    "30,z0:81.2",
-    "40,z0:61.5",
-    "0,z12:26.0",
-    "20,z0:24.3",
-    "-10,z12:12.1"
+    "50,z0:82.8",
+    "30,z0:82.6",
+    "40,z0:61.6",
+    "0,z8:26.0",
+    "20,z0:21.3",
+    "-10,z8:12.1"
    ]
   },
-  "tris": 14184
+  "tris": 14668
+ },
+ "ridgeback-mini": {
+  "kind": "dragons",
+  "name": "ridgeback-mini",
+  "spinClash": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "pieces": [
+   1,
+   1
+  ],
+  "totalPieces": 2,
+  "colours": [
+   "gold",
+   "blue"
+  ],
+  "size": [
+   30.2,
+   27.5,
+   33.3
+  ],
+  "zMin": 0,
+  "cm3": {
+   "body": 10.28,
+   "accent": 0.53
+  },
+  "overhang": {
+   "area": 44.2,
+   "worst": [
+    "-10,z0:18.8",
+    "0,z0:8.9",
+    "10,z12:6.8",
+    "10,z16:6.7",
+    "10,z4:3.1"
+   ]
+  },
+  "tris": 11440
+ },
+ "puff-mini": {
+  "kind": "dragons",
+  "name": "puff-mini",
+  "spinClash": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "pieces": [
+   1,
+   1
+  ],
+  "totalPieces": 2,
+  "colours": [
+   "gold",
+   "turquoise"
+  ],
+  "size": [
+   29.8,
+   34.6,
+   32.5
+  ],
+  "zMin": 0,
+  "cm3": {
+   "body": 11.25,
+   "accent": 0.619
+  },
+  "overhang": {
+   "area": 36.8,
+   "worst": [
+    "-10,z0:18.4",
+    "0,z0:8.2",
+    "10,z16:7.0",
+    "10,z12:2.9",
+    "-10,z16:0.4"
+   ]
+  },
+  "tris": 11306
+ },
+ "ridgeback-short": {
+  "kind": "dragons",
+  "name": "ridgeback-short",
+  "segments": 3,
+  "thinWall": [
+   0,
+   0.14
+  ],
+  "roofCap": [
+   "tent",
+   5.2
+  ],
+  "roofTried": [
+   "1:tent bad",
+   "1:7.6 bad",
+   "1:7.2 bad",
+   "1:6.8 bad",
+   "1:6.4 bad",
+   "1:6 bad",
+   "1:5.6 bad"
+  ],
+  "swing": [
+   [
+    24,
+    24
+   ],
+   [
+    28,
+    28
+   ]
+  ],
+  "pieces": [
+   1,
+   1,
+   1
+  ],
+  "totalPieces": 3,
+  "colours": [
+   "gold",
+   "blue"
+  ],
+  "size": [
+   57.3,
+   28.4,
+   19.8
+  ],
+  "zMin": 0,
+  "cm3": {
+   "body": 5.8,
+   "accent": 0.626
+  },
+  "overhang": {
+   "area": 62.7,
+   "worst": [
+    "20,z0:29.9",
+    "-20,z4:12.0",
+    "10,z4:5.8",
+    "0,z16:5.7",
+    "20,z4:4.0",
+    "30,z4:2.4"
+   ]
+  },
+  "tris": 68946
+ },
+ "puff-short": {
+  "kind": "dragons",
+  "name": "puff-short",
+  "segments": 3,
+  "thinWall": [
+   0,
+   0.14
+  ],
+  "roofCap": [
+   "tent",
+   "tent"
+  ],
+  "swing": [
+   [
+    24,
+    24
+   ],
+   [
+    28,
+    28
+   ]
+  ],
+  "pieces": [
+   1,
+   1,
+   1
+  ],
+  "totalPieces": 3,
+  "colours": [
+   "gold",
+   "turquoise"
+  ],
+  "size": [
+   60.4,
+   29.2,
+   23.4
+  ],
+  "zMin": 0,
+  "cm3": {
+   "body": 6.92,
+   "accent": 0.849
+  },
+  "overhang": {
+   "area": 47.9,
+   "worst": [
+    "20,z0:20.8",
+    "10,z4:7.0",
+    "20,z4:4.6",
+    "-10,z4:4.6",
+    "-10,z0:3.3",
+    "-20,z12:3.3"
+   ]
+  },
+  "tris": 68674
  }
 }

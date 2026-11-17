@@ -11,9 +11,9 @@ import { LAYER, D, supportCheck, features, verdict } from './lib.mjs';
 export { LAYER, D, supportCheck, features, verdict };
 
 if (process.argv[1] && process.argv[1].endsWith('supports.mjs')) {
-  const { ALL } = await import('./animals.mjs');
+  const { ALL } = await import('./catalog.mjs');
   const here = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')).replace(/%20/g, ' ').replace(/%23/g, '#');
-  const names = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(ALL), res = {};
+  const sf = path.join(here, 'supports.json'), names = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(ALL), res = fs.existsSync(sf) ? JSON.parse(fs.readFileSync(sf)) : {};   // keep the other animals' results
   for (const n of names) {
     const a = ALL[n](), all = U(a.segs);
     const { floating, over } = supportCheck(all), fs_ = features(over);

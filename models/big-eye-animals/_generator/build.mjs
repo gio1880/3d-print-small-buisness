@@ -1,6 +1,6 @@
 // node build.mjs [animal ...]   -> ../stl/<animal>-{body,white,black,all}.stl, ../previews/<animal>.png, report.json
 import fs from 'fs'; import path from 'path';
-import { ALL, COLOURS, HEX } from './animals.mjs';
+import { ALL, COLOURS, HEX } from './catalog.mjs';
 import { loadTemplate, write3mf } from './mf.mjs';
 import { U, writeSTL, render, overhang, vol } from './lib.mjs';
 const here = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')).replace(/%20/g, ' ').replace(/%23/g, '#');

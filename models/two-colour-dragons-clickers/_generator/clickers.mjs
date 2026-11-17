@@ -3,8 +3,12 @@
 // Prints right side up, no supports: floor, open pocket, then a 1.5 mm top plate with a 14.1 mm square hole the switch clips into.
 import { Manifold, CrossSection, U } from '../../big-eye-animals/_generator/lib.mjs';
 
-export const SW = { HOLE: 14.1, PLATE: 1.5, CAV: 15.8, CAVD: 8.8, FLOOR: 1.6, INLAY: 0.6, WALL: 1.6 };
-export const HT = SW.FLOOR + SW.CAVD + SW.PLATE;            // 11.9 mm tall
+// CAVD (space under the plate) is for a switch with its pins CLIPPED (17 Nov 2026): the housing hangs 3.5 mm below the plate,
+// plus ~1.3 mm for stubs. Snip both metal pins and the plastic centre post (and the two side posts on 5-pin switches) flush.
+// With pins left on, CAVD must go back to 8.8 (3.3 mm pins) and every clicker gets 4 mm taller.
+export const SW = { HOLE: 14.1, PLATE: 1.5, CAV: 15.8, CAVD: 4.8, FLOOR: 1.6, INLAY: 0.6, WALL: 1.6 };
+export const HT = SW.FLOOR + SW.CAVD + SW.PLATE;            // 7.9 mm (was 11.9 with pins)
+export const MAXW = 38;     // biggest outline (mm) a clicker is allowed; bigger designs shrink to this, then grow back only if the switch won't fit
 const R = (cs, d) => cs.offset(d, 'Round', 2, 48);
 const roundAll = (cs, r) => R(R(R(R(cs, -r), r), r), -r);   // rounds outside and inside corners
 const rsq = (w, r, h = w) => R(CrossSection.square([w - 2 * r, h - 2 * r], true), r);
@@ -20,7 +24,8 @@ const slab = (cs, z0, z1) => cs.extrude(z1 - z0 + 0.002).translate([0, 0, z0 - 0
 function shell(o, H = HT) {
   return U(slab(R(o, -0.4), 0, 0.2), slab(R(o, -0.2), 0.2, 0.4), slab(o, 0.4, H - 0.6), slab(R(o, -0.2), H - 0.6, H - 0.4), slab(R(o, -0.4), H - 0.4, H - 0.2), slab(R(o, -0.6), H - 0.2, H));
 }
-const pocket = () => U(slab(rsq(SW.CAV, 0.8), SW.FLOOR, HT - SW.PLATE), slab(CrossSection.square([SW.HOLE, SW.HOLE], true), HT - SW.PLATE - 0.5, HT + 1));
+// the 5 mm hole through the floor takes any pin stub, and lets you push the switch out from underneath with a pen
+const pocket = () => U(slab(rsq(SW.CAV, 0.8), SW.FLOOR, HT - SW.PLATE), slab(CrossSection.square([SW.HOLE, SW.HOLE], true), HT - SW.PLATE - 0.5, HT + 1), slab(circ(2.5), -1, SW.FLOOR + 0.1));
 const inlay = cs => slab(cs, HT - SW.INLAY, HT + 0.01);
 
 // ================= TWO-PIECE CLICKERS (17 Nov 2026): no keycap. The printed top half IS the cap.
@@ -29,10 +34,10 @@ const inlay = cs => slab(cs, HT - SW.INLAY, HT + 0.01);
 //   'lid'   : base = full-outline foot + a smaller neck around the switch; cap = roof + skirt that slides over the neck (hides the switch)
 //   'split' : base and cap are both full outline with a visible 4.5 mm gap that closes when pressed (sandwich foods)
 export const TWO = {
-  ZS: 6.0,        // lid: height of the base foot (shoulder) above the plate bed
+  ZS: HT - 5.9,   // lid: height of the base foot (shoulder) above the plate bed: 0.5 mm below the skirt when fully pressed
   GAP: 0.45,      // lid: side clearance between skirt and neck
   SKIRT: 1.6,     // lid: skirt wall
-  WELL: 18.0,     // open well above the switch plate (room for fingers / a switch puller)
+  WELL: 16.4,     // open well above the switch plate: clears the 15.6 mm housing (was 18 for a switch puller; now the switch pushes out through the floor hole)
   UP: 6.0,        // base walls rise this far above the plate (switch housing is 6.6)
   ROOF_U: 11.2,   // cap roof underside above the plate at rest (pressed: 7.2, clears the housing at 6.6)
   ROOF_T: 2.4,    // cap roof thickness
@@ -53,7 +58,8 @@ function holder({ name, outline, accent, cut, pits, style = 'lid', baseAcc, base
   // grow the design until the switch, walls and neck fit inside it
   const needLid = rsq(TWO.WELL + 2.4, 1.2), needLow = rsq(SW.CAV + 2 * SW.WALL, 0.8 + SW.WALL);
   const fits = o => needLow.subtract(o).area() < 0.01 && needLid.subtract(style === 'lid' ? R(o, -(TWO.SKIRT + TWO.GAP)) : o).area() < 0.01;
-  let k = 1; while (!fits(outline.scale([k, k])) && k < 1.8) k += 0.02;
+  const ob = outline.bounds(), big = Math.max(ob.max[0] - ob.min[0], ob.max[1] - ob.min[1]);
+  let k = Math.min(1, MAXW / big); while (!fits(outline.scale([k, k])) && k < 1.8) k += 0.02;
   const sc = cs => cs && cs.scale([k, k]);
   const o = sc(outline), acc = sc(accent), pit = sc(pits), hole = sc(cut);
   const top = P + TWO.UP, well = slab(rsq(TWO.WELL, 1.2), P, top + 1);
