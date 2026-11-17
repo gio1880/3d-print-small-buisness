@@ -218,3 +218,26 @@ export function dog() {
 Object.assign(ALL, { cat, dog });
 Object.assign(COLOURS, { cat: [255, 145, 40], dog: [200, 145, 90] });
 Object.assign(HEX, { cat: '#FF9016', dog: '#C68E5A' });
+
+// ---- added 17 Nov: small octopus, about 32 mm (1.25 in) each way. Head spins on the tentacle ring; no tail joint.
+// Tentacles lie flat on the plate and alternate: four curl their tips up, four stay down.
+export function octopus() {
+  const hc = [-0.6, 0, 18.6], H = hull(E(hc, [11.8, 12.4, 12.2]), E([0, 0, 8.5], [9.6, 9.8, 5]), E([0, 0, 0.3], [8.6, 8.6, 0.3]));
+  const arm = (k) => {
+    const a = (22.5 + 45 * k) * Math.PI / 180, up = k % 2 === 0;
+    const pts = up ? [[6.5, 3.4, 3.2], [10.2, 2.5, 2.5], [13.2, 2.0, 2.0], [15.4, 2.4, 1.6], [16.4, 3.6, 1.3]]
+      : [[6.5, 3.4, 3.2], [10.2, 2.5, 2.5], [13.4, 1.9, 1.9], [16.0, 1.5, 1.5]];
+    return chain(pts.map(([r, z, rr]) => S([r * Math.cos(a), r * Math.sin(a), z], rr)));
+  };
+  const front = surf(H, [0, 0, 14.6], [1, 0, 0]);
+  const snout = hull(E([front[0] + 0.2, 0, 14.6], [1.8, 2.2, 2.0]), S([front[0] - 2.2, 0, 12.2], 1.4));   // chin slopes into the head: no start in mid-air
+  const mouth = E([front[0] + 1.75, 0, 14.6], [0.8, 1.0, 1.1]);
+  return bird({
+    name: 'octopus', egg: H, upper: [snout], lower: [0, 1, 2, 3, 4, 5, 6, 7].map(arm), tail: null, zc: 3.4,
+    items: [...frontEyes(H, hc, [0.8, 0.5, 0.27], { size: [3.9, 4.5], pupil: [0.58, 0.62], off: [0.14, -0.06], hl: [-0.3, 0.42], dot: 0.95 }),
+    { c: 'black', on: 'top', m: mouth }]
+  });
+}
+Object.assign(ALL, { octopus });
+Object.assign(COLOURS, { octopus: [0, 134, 214] });
+Object.assign(HEX, { octopus: '#0086D6' });

@@ -17,6 +17,7 @@ export const FLUSH = { 'gold>blue': 160, 'blue>gold': 520, 'gold>turquoise': 240
 // [body (slot 1), accent (slot 2)]. Swap the spools in the AMS for the other looks.
 export const PAIR = {
   ridgeback: ['gold', 'blue'], puff: ['gold', 'turquoise'],
+  'ridgeback-mini': ['gold', 'blue'], 'puff-mini': ['gold', 'turquoise'], 'ridgeback-short': ['gold', 'blue'], 'puff-short': ['gold', 'turquoise'],
   square: ['gold', 'blue'], circle: ['gold', 'turquoise'], triangle: ['gold', 'orange'], star: ['blue', 'gold'], heart: ['gold', 'orange'],
   hexagon: ['gold', 'turquoise'], gear: ['blue', 'gold'], 'star-of-david': ['gold', 'blue'], flower: ['gold', 'orange'], donut: ['gold', 'turquoise'],
   paw: ['turquoise', 'blue'], shield: ['blue', 'gold'], 'keychain-tag': ['gold', 'blue'], hamburger: ['gold', 'orange'], 'switch-fit-test': ['gold', 'gold'],

@@ -1,11 +1,11 @@
 // node sheet.mjs  -> ../previews/family.png (every animal in one picture)
 import path from 'path';
-import { ALL, COLOURS } from './animals.mjs';
+import { ALL, COLOURS } from './catalog.mjs';
 import { render, vol } from './lib.mjs';
 const here = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')).replace(/%20/g, ' ').replace(/%23/g, '#');
 const spots = {
   chameleon: [0, 0], parrot: [35, -62], dragon: [0, 62], axolotl: [-105, 0], shark: [-105, 62], owl: [-45, -62],
-  alligator: [10, 124], turtle: [-105, 124], panda: [-120, -62], cat: [-20, -135], dog: [75, -135]
+  alligator: [10, 124], turtle: [-105, 124], panda: [-120, -62], cat: [-20, -135], dog: [75, -135], octopus: [95, -62]
 };
 const parts = [];
 for (const [n, [x, y]] of Object.entries(spots)) {
