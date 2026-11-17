@@ -1,0 +1,6 @@
+node_modules/
+.env
+npm-debug.log*
+
+# Customer inquiries contain personal contact details. Never commit these.
+data/
