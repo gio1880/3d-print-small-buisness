@@ -1,3 +1,7 @@
 node_modules/
 .env
 npm-debug.log*
+
+# models: build leftovers (zips are made on demand; slicer scratch)
+models/**/*.zip
+models/**/_slice-tmp/
