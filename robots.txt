@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /docs/
+Disallow: /README.md
+Disallow: /CLAUDE.md
+Disallow: /CONTRIBUTING.md
 
 Sitemap: https://glitchprints.com/sitemap.xml

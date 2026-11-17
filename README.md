@@ -1,33 +1,54 @@
-# GlitchPrints site: launch steps
+# GlitchPrints website
 
-This branch is the finished site, served as is by GitHub Pages from the branch root.
+GlitchPrints makes custom 3D printed and laser cut pieces in small batches for families,
+schools, teams, restaurants and events around Queens and Westchester, New York.
+This branch (`website`) is the public site for **glitchprints.com**.
 
-## What's already done
-- 24 pages with titles, descriptions, business and FAQ schema, sitemap.xml, robots.txt, 404 page.
-- Quote form posts to FormSubmit for printsglitch@gmail.com (free, no account). Sends to /thanks/ after.
-- CNAME file set to glitchprints.com. Headings in Orbitron, body in Inter.
-- Domain: glitchprints.com, registered at Namecheap on Jul 16, 2026 (1 year).
+- Email: printsglitch@gmail.com
+- Phone and text: (646) 345-1727
+- Site: https://glitchprints.com/ (not live yet, see [docs/deploy.md](docs/deploy.md))
 
-## Host: GitHub Pages (free for a public repo, no card)
-1. Done: this branch, `website`, in
-   gio1880/3d-print-small-buisness.
-2. On GitHub: repo Settings > Pages > Source "Deploy from a branch" > branch `website`, folder `/ (root)` > Save.
-3. Same page: Custom domain `glitchprints.com` > Save. (Add it here before changing DNS.)
-4. Namecheap: Domain List > glitchprints.com > Manage > Advanced DNS. Delete the parking/redirect
-   records for `@` and `www`, then add:
-   - A record, host `@`, value 185.199.108.153
-   - A record, host `@`, value 185.199.109.153
-   - A record, host `@`, value 185.199.110.153
-   - A record, host `@`, value 185.199.111.153
-   - CNAME record, host `www`, value gio1880.github.io.
-5. Wait for DNS (minutes, up to 24 hours), then tick "Enforce HTTPS" in Settings > Pages.
-6. Submit one test quote on the live site. FormSubmit emails printsglitch@gmail.com a one-time
-   confirmation; click it. Real requests flow after that.
-7. Optional, free: add the site in Google Search Console and submit https://glitchprints.com/sitemap.xml.
+## What's here
 
-Leave the Render service alone; once the domain points at GitHub Pages, Render isn't used.
+| Path | What it is |
+| --- | --- |
+| `index.html` | Home page |
+| `<page-name>/index.html` | One folder per page, so URLs are clean: `/custom-coasters/` |
+| `404.html` | Page-not-found page |
+| `sitemap.xml`, `robots.txt` | Search engine files |
+| `CNAME` | Tells GitHub Pages the custom domain (`glitchprints.com`) |
+| `.nojekyll` | Tells GitHub Pages to serve files as they are |
+| `CLAUDE.md` | Start here if you're an AI assistant |
+| `CONTRIBUTING.md` | How to make a change |
+| `docs/` | Business context: what we sell, prices, searches, areas, brand, deploy |
 
-## Still needed from Gio before or soon after launch
-- Prices for ornaments, acrylic signs and NFC review stands (pages say "ask for a quote" until then).
-- 3 to 6 photos of real finished pieces, a 2 to 3 sentence bio, and real reviews when you have them.
-  The site can launch without these; marked spots show where they go.
+The site is plain HTML with no build step and no JavaScript framework. Each page carries
+its own copy of the CSS, header and footer, so a site-wide change (nav, footer, colors)
+has to be made in every page. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Preview locally
+
+```
+python3 -m http.server 8000
+```
+
+Then open http://localhost:8000/. The quote form only sends from the live domain.
+
+## Pages (24)
+
+- **Home:** `/`
+- **Families and parties:** `/birthday-party-favors/`, `/custom-cake-toppers/`, `/custom-toy-from-drawing/`, `/christmas-ornaments-gifts/`
+- **Schools and teams:** `/class-gifts/`, `/custom-clicker-keychains/`, `/custom-name-keychains/`, `/custom-medals/`
+- **Restaurants and businesses:** `/restaurant-table-numbers/`, `/qr-code-table-stands/`, `/google-review-stands/`, `/custom-coasters/`, `/custom-acrylic-signs/`
+- **Events:** `/event-table-numbers-place-cards/`
+- **Services and areas:** `/3d-printing-service/`, `/laser-engraving-service/`, `/3d-printing-queens/`, `/3d-printing-westchester/`
+- **Other:** `/pricing/`, `/faq/`, `/about/`, `/contact/` (quote form), `/thanks/` (after the form, not indexed)
+
+## Docs
+
+- [Business overview](docs/business.md)
+- [Prices and offers](docs/pricing.md)
+- [What customers search for](docs/search.md)
+- [Service areas](docs/service-areas.md)
+- [Brand rules](docs/brand.md)
+- [Deploying the site](docs/deploy.md)
