@@ -954,6 +954,678 @@
       .clicker-builder { grid-template-columns: 1fr; }
     }
 
+    /* ---- size tiers + add-ons ---- */
+    .pricing {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto 90px;
+    }
+
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 34px;
+    }
+
+    .tier {
+      border: 1px solid var(--line);
+      background: var(--card);
+      padding: 24px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: .22s ease;
+    }
+
+    .tier:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0,229,255,.5);
+      box-shadow: 0 18px 40px rgba(0,0,0,.45);
+    }
+
+    .tier.featured {
+      border-color: var(--magenta);
+      background: linear-gradient(160deg, rgba(255,43,214,.12), rgba(0,229,255,.06));
+    }
+
+    .tier .badge {
+      position: absolute;
+      top: -11px;
+      left: 24px;
+      background: var(--magenta);
+      color: var(--white);
+      font-family: var(--display);
+      font-size: .58rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+    }
+
+    .tier h3 {
+      font-family: var(--display);
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+    }
+
+    .tier .buttons-range {
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--cyan);
+      margin-bottom: 14px;
+    }
+
+    .tier .tier-price {
+      font-family: var(--display);
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--lime);
+      line-height: 1;
+    }
+
+    .tier .tier-price small {
+      display: block;
+      font-family: var(--body);
+      font-size: .72rem;
+      font-weight: 400;
+      color: var(--gray);
+      letter-spacing: .4px;
+      margin-top: 6px;
+    }
+
+    .tier .tier-copy {
+      color: rgba(244,244,245,.76);
+      font-size: .88rem;
+      line-height: 1.6;
+      margin: 16px 0 10px;
+    }
+
+    .tier .examples {
+      font-family: var(--display);
+      font-size: .7rem;
+      letter-spacing: 1.5px;
+      color: var(--gray);
+      margin-bottom: 18px;
+    }
+
+    .tier .btn {
+      margin-top: auto;
+      width: 100%;
+    }
+
+    .addon-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .addon {
+      border: 1px solid var(--line);
+      background: var(--card);
+      padding: 16px;
+      transition: .2s ease;
+    }
+
+    .addon:hover {
+      border-color: rgba(0,229,255,.45);
+      transform: translateY(-3px);
+    }
+
+    .addon .top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .addon h4 {
+      font-family: var(--display);
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+
+    .addon .cost {
+      font-family: var(--display);
+      color: var(--lime);
+      font-size: .82rem;
+      white-space: nowrap;
+    }
+
+    .addon p {
+      font-size: .8rem;
+      color: rgba(244,244,245,.64);
+      line-height: 1.5;
+    }
+
+    .limit-note {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px dashed var(--magenta);
+      background: rgba(255,43,214,.07);
+      padding: 14px 18px;
+      margin-top: 22px;
+      font-size: .88rem;
+      color: rgba(244,244,245,.82);
+      line-height: 1.55;
+    }
+
+    .limit-note .cap {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--magenta);
+      line-height: 1;
+      flex: 0 0 auto;
+    }
+
+    /* ---- event packages ---- */
+    .events {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto 90px;
+    }
+
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .event-card {
+      border: 1px solid var(--line);
+      background: var(--card);
+      padding: 26px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: .22s ease;
+    }
+
+    .event-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0,229,255,.5);
+      box-shadow: 0 18px 40px rgba(0,0,0,.45);
+    }
+
+    .event-card.featured {
+      border-color: var(--magenta);
+      background: linear-gradient(160deg, rgba(255,43,214,.12), rgba(0,229,255,.06));
+    }
+
+    .event-card .people {
+      font-family: var(--display);
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      color: var(--cyan);
+      margin-bottom: 10px;
+    }
+
+    .event-card h3 {
+      font-family: var(--display);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-size: 1.2rem;
+      margin-bottom: 14px;
+    }
+
+    .event-card .rate {
+      font-family: var(--display);
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--lime);
+      line-height: 1;
+    }
+
+    .event-card .rate span {
+      font-family: var(--body);
+      font-size: .8rem;
+      font-weight: 400;
+      color: var(--gray);
+      letter-spacing: .4px;
+    }
+
+    .event-card .range-total {
+      font-size: .82rem;
+      color: rgba(244,244,245,.72);
+      margin: 10px 0 14px;
+    }
+
+    .event-card .tag-copy {
+      color: rgba(244,244,245,.76);
+      font-size: .87rem;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .event-card .includes {
+      font-size: .78rem;
+      color: var(--gray);
+      line-height: 1.55;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+      margin-bottom: 18px;
+    }
+
+    .event-card .btn { margin-top: auto; width: 100%; }
+
+    .event-calc {
+      border: 1px solid var(--cyan);
+      background: linear-gradient(135deg, rgba(0,229,255,.10), rgba(255,43,214,.06));
+      padding: 24px 26px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .event-calc .calc-field { display: grid; gap: 8px; }
+
+    .event-calc label {
+      font-family: var(--display);
+      font-size: .68rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--cyan);
+    }
+
+    .event-calc input {
+      width: 130px;
+      min-height: 48px;
+      border: 1px solid var(--line);
+      background: rgba(11,11,15,.7);
+      color: var(--white);
+      font-family: var(--display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      padding: 8px 12px;
+      text-align: center;
+    }
+
+    .event-calc input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(0,229,255,.15);
+      outline: none;
+    }
+
+    .calc-result { line-height: 1.5; }
+
+    .calc-result .headline {
+      font-family: var(--display);
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: var(--lime);
+    }
+
+    .calc-result .detail {
+      font-size: .86rem;
+      color: rgba(244,244,245,.78);
+      margin-top: 4px;
+    }
+
+    .calc-result .detail em {
+      font-style: normal;
+      color: var(--magenta);
+      font-weight: 600;
+    }
+
+    @media (max-width: 950px) {
+      .event-grid { grid-template-columns: 1fr; }
+      .event-calc { grid-template-columns: 1fr; text-align: left; }
+      .event-calc .btn { width: 100%; }
+    }
+
+    @media (max-width: 560px) {
+      .events { width: min(100% - 28px, 1180px); }
+    }
+
+    /* ---- discounts ---- */
+    .deal-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .deal {
+      border: 1px solid var(--line);
+      background: rgba(182,255,0,.05);
+      padding: 12px 14px;
+      text-align: center;
+    }
+
+    .deal .qty {
+      font-family: var(--display);
+      font-size: .68rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--gray);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .deal .off {
+      font-family: var(--display);
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--lime);
+      line-height: 1;
+    }
+
+    .deal.best {
+      border-color: var(--lime);
+      background: rgba(182,255,0,.11);
+      box-shadow: 0 0 18px rgba(182,255,0,.14);
+    }
+
+    .was {
+      color: var(--gray);
+      text-decoration: line-through;
+      font-weight: 400;
+      margin-right: 8px;
+    }
+
+    .save-badge {
+      display: inline-block;
+      background: var(--lime);
+      color: #0B0B0F;
+      font-family: var(--display);
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      margin-top: 8px;
+    }
+
+    .tier .tier-price .was { font-size: 1.1rem; display: inline; }
+
+    /* ---- inquiry form ---- */
+    .inquiry {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto 90px;
+    }
+
+    .inquiry-grid {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 24px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(0,229,255,.08), rgba(255,43,214,.09));
+      padding: 30px;
+    }
+
+    .inquiry-copy p {
+      color: rgba(244,244,245,.78);
+      line-height: 1.7;
+      margin-bottom: 16px;
+      font-size: .92rem;
+    }
+
+    .inquiry-copy ul {
+      list-style: none;
+      display: grid;
+      gap: 9px;
+      margin-top: 18px;
+    }
+
+    .inquiry-copy li {
+      font-size: .86rem;
+      color: rgba(244,244,245,.72);
+      padding-left: 22px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .inquiry-copy li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+    }
+
+    .inquiry-form {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .hp-field {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .form-status {
+      font-size: .86rem;
+      line-height: 1.5;
+      padding: 11px 14px;
+      border: 1px solid transparent;
+      display: none;
+    }
+
+    .form-status.show { display: block; }
+
+    .form-status.ok {
+      border-color: var(--lime);
+      background: rgba(182,255,0,.09);
+      color: var(--white);
+    }
+
+    .form-status.err {
+      border-color: var(--magenta);
+      background: rgba(255,43,214,.09);
+      color: var(--white);
+    }
+
+    @media (max-width: 950px) {
+      .deal-strip { grid-template-columns: repeat(2, 1fr); }
+      .inquiry-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .inquiry { width: min(100% - 28px, 1180px); }
+      .inquiry-grid { padding: 20px; }
+    }
+
+    /* ---- who it's for ---- */
+    .audience {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto 90px;
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .aud {
+      border: 1px solid var(--line);
+      background: var(--card);
+      padding: 20px;
+      transition: .2s ease;
+    }
+
+    .aud:hover {
+      border-color: rgba(255,43,214,.5);
+      transform: translateY(-4px);
+    }
+
+    .aud .ico {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .aud h4 {
+      font-family: var(--display);
+      font-size: .84rem;
+      text-transform: uppercase;
+      letter-spacing: .9px;
+      margin-bottom: 8px;
+      color: var(--cyan);
+    }
+
+    .aud p {
+      font-size: .85rem;
+      color: rgba(244,244,245,.7);
+      line-height: 1.6;
+    }
+
+    /* ---- builder: size readout, add-ons, quantity ---- */
+    .size-readout {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid var(--line);
+      background: rgba(0,229,255,.06);
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      font-size: .8rem;
+    }
+
+    .size-readout .tag {
+      font-family: var(--display);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    .size-readout .tag.none { color: var(--gray); }
+
+    .addon-picks {
+      display: grid;
+      gap: 8px;
+      max-height: 232px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .pick {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.035);
+      padding: 9px 12px;
+      cursor: pointer;
+      transition: .15s ease;
+      font-size: .84rem;
+    }
+
+    .pick:hover { border-color: rgba(0,229,255,.45); }
+
+    .pick input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--magenta);
+      flex: 0 0 auto;
+      cursor: pointer;
+    }
+
+    .pick .pick-name { flex: 1; }
+
+    .pick .pick-cost {
+      font-family: var(--display);
+      font-size: .74rem;
+      color: var(--lime);
+      white-space: nowrap;
+    }
+
+    .pick.on {
+      border-color: var(--magenta);
+      background: rgba(255,43,214,.10);
+    }
+
+    .pick select {
+      background: rgba(11,11,15,.9);
+      color: var(--white);
+      border: 1px solid var(--line);
+      font: inherit;
+      font-size: .78rem;
+      padding: 3px 6px;
+    }
+
+    .qty-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .qty-btn {
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      color: var(--white);
+      font-family: var(--display);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: .15s ease;
+    }
+
+    .qty-btn:hover:not(:disabled) {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .qty-btn:disabled { opacity: .3; cursor: not-allowed; }
+
+    .qty-val {
+      font-family: var(--display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      min-width: 34px;
+      text-align: center;
+    }
+
+    .qty-cap {
+      font-size: .72rem;
+      color: var(--gray);
+      letter-spacing: .4px;
+    }
+
+    .price-lines {
+      display: grid;
+      gap: 4px;
+      margin-bottom: 10px;
+      font-size: .78rem;
+      color: rgba(244,244,245,.7);
+    }
+
+    .price-lines .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .price-lines .row.sub {
+      color: var(--gray);
+      font-size: .74rem;
+    }
+
+    @media (max-width: 950px) {
+      .tier-grid { grid-template-columns: 1fr; }
+      .addon-grid { grid-template-columns: repeat(2, 1fr); }
+      .audience-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 560px) {
+      .addon-grid, .audience-grid { grid-template-columns: 1fr; }
+      .pricing, .audience { width: min(100% - 28px, 1180px); }
+    }
+
     .about-team {
       width: min(1180px, calc(100% - 40px));
       margin: 0 auto 90px;
@@ -1462,9 +2134,11 @@
       <a href="#home" class="logo" aria-label="Glitch Prints home">GLITCH <span>PRINTS</span></a>
       <nav aria-label="Main navigation">
         <a class="active" href="#home">Home</a>
+        <a href="#events">Events</a>
+        <a href="#clickers">Build a Clicker</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#quote">Get a Quote</a>
         <a href="#shop">Shop</a>
-        <a href="#clickers">Clickers</a>
-        <a href="#custom">Custom Prints</a>
         <a href="#about">About</a>
         <a href="#faq">FAQ</a>
         <a class="cart" href="#cart" aria-label="Shopping cart" data-cart-toggle>⌁ <span class="cart-count">0</span></a>
@@ -1477,25 +2151,25 @@
       </video>
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-text">
-        <div class="eyebrow">3D printed objects</div>
-        <h1><span class="white">Design it.</span><br><span class="white">Print it.</span><br><span class="magenta">Use it.</span></h1>
-        <p class="hero-copy">High-quality 3D prints made with precision. Choose from ready-made products or request a custom print built layer by layer.</p>
+        <div class="eyebrow">Custom flexi clickers</div>
+        <h1><span class="white">Your name.</span><br><span class="white">One button</span><br><span class="magenta">per letter.</span></h1>
+        <p class="hero-copy">We build custom flexi clicker keychains — every letter is its own satisfying click. Doing an event? Everyone gets their own name, from <strong>$8 a person</strong>. Want just one? Build it yourself below.</p>
         <div class="actions">
-          <a class="btn primary" href="#shop">Shop Now</a>
-          <a class="btn secondary" href="#custom">Request Custom</a>
+          <a class="btn primary" href="#events">Plan an Event</a>
+          <a class="btn secondary" href="#clickers">Build Just One</a>
         </div>
         <div class="stats">
           <div>
-            <div class="num"><em>500</em>+</div>
-            <div class="lbl">Prints Shipped</div>
+            <div class="num"><em>$8</em></div>
+            <div class="lbl">Per Person at 26+</div>
           </div>
           <div>
-            <div class="num"><em>0.1</em>mm</div>
-            <div class="lbl">Layer Precision</div>
+            <div class="num"><em>5</em>+</div>
+            <div class="lbl">People Per Event</div>
           </div>
           <div>
             <div class="num"><em>48</em>h</div>
-            <div class="lbl">Avg. Turnaround</div>
+            <div class="lbl">Rush Available</div>
           </div>
         </div>
       </div>
@@ -1509,9 +2183,253 @@
       </div>
     </section>
 
+    <section class="events" id="events">
+      <div class="section-head">
+        <h2>Event Packages</h2>
+        <a class="view-all" href="#quote">Request a quote →</a>
+      </div>
+      <p class="note" style="color:rgba(244,244,245,.76); font-size:.94rem; line-height:1.7; margin:-8px 0 24px; max-width:760px">
+        Doing a party, class, team, or fundraiser? Everyone gets their <strong>own</strong> custom clicker with their
+        <strong>own</strong> name on it. Pricing is per person, and the bigger your event, the lower the rate.
+        Minimum 5 people.
+      </p>
+
+      <div class="event-grid" data-event-grid></div>
+
+      <div class="event-calc">
+        <div class="calc-field">
+          <label for="event-people">How many people?</label>
+          <input id="event-people" type="number" min="1" max="500" value="20" data-event-people />
+        </div>
+        <div class="calc-result" data-event-result></div>
+        <a class="btn primary" href="#quote" data-event-cta>Get This Quote</a>
+      </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+      <div class="section-head">
+        <h2>Single Clickers</h2>
+        <a class="view-all" href="#clickers">Start building →</a>
+      </div>
+      <p class="note" style="color:rgba(244,244,245,.72); font-size:.9rem; margin:-8px 0 22px; max-width:720px">
+        Just want one for yourself? Buy individual clickers below — priced by how many buttons they have. Limit 10 per person.
+        For 5 or more people with different names, the <a href="#events" style="color:var(--cyan)">event packages</a> above are cheaper.
+      </p>
+
+      <div class="tier-grid" data-tier-grid></div>
+
+      <h3 class="cat-head">Bundle &amp; Save <span>discount applies automatically at checkout</span></h3>
+      <div class="deal-strip" data-deal-strip></div>
+      <p class="note" style="color:var(--gray); font-size:.8rem; margin:-8px 0 30px">Crossed-out prices are our normal price with no discount applied — never an inflated made-up number. Stack <strong style="color:var(--lime)">3 or more add-ons</strong> and the add-on total drops another 15%.</p>
+
+      <h3 class="cat-head">Add-Ons <span>mix and match on any size</span></h3>
+      <div class="addon-grid" data-addon-grid></div>
+
+      <div class="limit-note">
+        <span class="cap">10</span>
+        <span><strong>Limit 10 clickers per person on single orders.</strong> We build every one by hand between school and robotics practice, so the cap keeps turnaround fast and fair. Ordering for a group instead? <a href="#events" style="color:var(--cyan)">Event packages</a> start at 5 people with no cap — and cost less per clicker.</span>
+      </div>
+    </section>
+
+    <section class="clickers" id="clickers">
+      <div class="section-head">
+        <h2>Build Your Clicker</h2>
+        <a class="view-all" href="#pricing">See all pricing →</a>
+      </div>
+
+      <div class="clicker-builder">
+        <div class="clicker-controls">
+          <p class="lead">Fidget keychains that <strong>click</strong> — one satisfying button per letter. Type your letters and the size tier, price, and preview update as you go.</p>
+
+          <div class="size-readout">
+            <span>Your clicker length</span>
+            <span class="tag none" data-size-tag>Type at least 2 letters</span>
+          </div>
+
+          <div class="field">
+            <label>Layout</label>
+            <div class="layout-row" data-layout-row>
+              <button class="layout-btn" type="button" data-layout="row" aria-pressed="true">Straight Row<span>2–12 buttons</span></button>
+              <button class="layout-btn" type="button" data-layout="2x2" aria-pressed="false">2×2 Grid<span>4 buttons</span></button>
+              <button class="layout-btn" type="button" data-layout="3x3" aria-pressed="false">3×3 Grid<span>9 buttons</span></button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="clicker-text">Your Letters <span class="char-count" data-clicker-count>0 / 12</span></label>
+            <input id="clicker-text" data-clicker-input maxlength="12" placeholder="Type here... e.g. GIO" autocomplete="off" />
+          </div>
+
+          <div class="field">
+            <label>Button Color</label>
+            <div class="swatch-row" data-swatch-row>
+              <button class="swatch" type="button" style="--sw:#00E5FF" data-color="#00E5FF" data-color-name="Cyan" aria-pressed="true" aria-label="Cyan"></button>
+              <button class="swatch" type="button" style="--sw:#FF2BD6" data-color="#FF2BD6" data-color-name="Magenta" aria-pressed="false" aria-label="Magenta"></button>
+              <button class="swatch" type="button" style="--sw:#B6FF00" data-color="#B6FF00" data-color-name="Lime" aria-pressed="false" aria-label="Lime"></button>
+              <button class="swatch" type="button" style="--sw:#FF8A00" data-color="#FF8A00" data-color-name="Orange" aria-pressed="false" aria-label="Orange"></button>
+              <button class="swatch" type="button" style="--sw:#F4F4F5" data-color="#F4F4F5" data-color-name="White" aria-pressed="false" aria-label="White"></button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Add-Ons</label>
+            <div class="addon-picks" data-addon-picks></div>
+          </div>
+
+          <div class="field">
+            <label for="clicker-qty">How Many?</label>
+            <div class="qty-row">
+              <button class="qty-btn" type="button" data-qty-down aria-label="One fewer clicker">−</button>
+              <span class="qty-val" data-qty-val id="clicker-qty" role="status">1</span>
+              <button class="qty-btn" type="button" data-qty-up aria-label="One more clicker">+</button>
+              <span class="qty-cap" data-qty-cap>Limit 10 per person</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="clicker-stage">
+          <span class="hint">Live preview — go ahead, click the buttons</span>
+          <div class="clicker-preview" data-clicker-preview aria-live="polite">
+            <span class="empty">Your clicker shows up here...</span>
+          </div>
+          <div class="clicker-summary">
+            <div style="flex:1; min-width:200px">
+              <div class="price-lines" data-price-lines></div>
+              <div class="clicker-price">
+                <span class="amt" data-clicker-price>$0.00</span>
+                <span class="breakdown" data-clicker-breakdown>Pick a size to see your price</span>
+              </div>
+            </div>
+            <button class="btn primary" type="button" data-clicker-add disabled>Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="inquiry" id="quote">
+      <div class="section-head">
+        <h2>Interested? Get a Quote</h2>
+        <a class="view-all" href="#clickers">Or build one now →</a>
+      </div>
+
+      <div class="inquiry-grid">
+        <div class="inquiry-copy">
+          <div class="eyebrow">We reply within 48 hours</div>
+          <p>Need more than 10 clickers, a class set, team colors, or something we don't offer yet? Tell us what you're after and we'll send back a real quote and timeline — no obligation.</p>
+          <ul>
+            <li>Event packages from 5 people up — everyone gets their own name</li>
+            <li>Bulk and team orders past the 10-piece limit</li>
+            <li>Classroom sets and school-spirit runs</li>
+            <li>Fundraiser partnerships — we split proceeds with your group</li>
+            <li>Custom themes, logos, and colors we don't stock</li>
+            <li>Event favors with a firm deadline</li>
+          </ul>
+        </div>
+
+        <form class="inquiry-form" data-inquiry-form novalidate>
+          <div class="form-status" data-inquiry-status role="status" aria-live="polite"></div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="inq-name">Name</label>
+              <input id="inq-name" name="name" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="inq-email">Email</label>
+              <input id="inq-email" name="email" type="email" autocomplete="email" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="inq-interest">I'm Interested In</label>
+              <select id="inq-interest" name="interest" required>
+                <option value="">Choose one</option>
+                <option>Event package</option>
+                <option>Bulk / team order</option>
+                <option>Classroom or school set</option>
+                <option>Fundraiser partnership</option>
+                <option>Custom clicker design</option>
+                <option>Custom 3D print</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="inq-quantity">How Many People?</label>
+              <input id="inq-quantity" name="quantity" placeholder="e.g. 30, or not sure yet" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="inq-date">Event Date <span style="color:var(--gray); font-weight:400; text-transform:none">(if you have one)</span></label>
+              <input id="inq-date" name="eventDate" placeholder="e.g. Nov 14, or flexible" />
+            </div>
+            <div class="field">
+              <label for="inq-phone">Phone <span style="color:var(--gray); font-weight:400; text-transform:none">(optional)</span></label>
+              <input id="inq-phone" name="phone" type="tel" autocomplete="tel" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="inq-message">What Do You Need?</label>
+            <textarea id="inq-message" name="message" placeholder="Names or text, colors, theme, deadline, budget — whatever you know so far." required></textarea>
+          </div>
+
+          <div class="hp-field" aria-hidden="true">
+            <label for="inq-website">Leave this empty</label>
+            <input id="inq-website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="actions" style="justify-content:flex-end">
+            <button class="btn primary" type="submit" data-inquiry-submit>Send Request</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="audience" id="who">
+      <div class="section-head">
+        <h2>Who We Build For</h2>
+        <a class="view-all" href="#clickers">Build yours →</a>
+      </div>
+      <div class="audience-grid">
+        <div class="aud">
+          <span class="ico">🎒</span>
+          <h4>Students &amp; Backpacks</h4>
+          <p>Your name on your bag so nobody grabs the wrong one — and something to click through a long class period.</p>
+        </div>
+        <div class="aud">
+          <span class="ico">🍎</span>
+          <h4>Teachers &amp; Classrooms</h4>
+          <p>Reward clickers, name tags, and end-of-year gifts. Ask about class-set pricing above the 10-piece limit.</p>
+        </div>
+        <div class="aud">
+          <span class="ico">🩺</span>
+          <h4>Nurses &amp; Healthcare</h4>
+          <p>Badge-reel clickers that survive a twelve-hour shift, with a themed pack for your unit or specialty.</p>
+        </div>
+        <div class="aud">
+          <span class="ico">🧠</span>
+          <h4>Focus &amp; Sensory Needs</h4>
+          <p>Quiet, repeatable tactile feedback for anyone who thinks better with something in their hands.</p>
+        </div>
+        <div class="aud">
+          <span class="ico">🏆</span>
+          <h4>Teams, Clubs &amp; Bands</h4>
+          <p>Team name, jersey number, or season year in your colors. Great for senior night and end-of-season gifts.</p>
+        </div>
+        <div class="aud">
+          <span class="ico">🎁</span>
+          <h4>Gifts &amp; Party Favors</h4>
+          <p>Birthdays, stocking stuffers, and favors that already have the person's name on them. Add a gift box.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="products" id="shop">
       <div class="section-head">
-        <h2>Shop Our Prints</h2>
+        <h2>Also In The Shop</h2>
         <a class="view-all" href="#shop" data-view-all>View All →</a>
       </div>
 
@@ -1739,58 +2657,6 @@
       </div>
     </section>
 
-    <section class="clickers" id="clickers">
-      <div class="section-head">
-        <h2>Custom Clickers</h2>
-        <a class="view-all" href="#faq">How it works →</a>
-      </div>
-
-      <div class="clicker-builder">
-        <div class="clicker-controls">
-          <p class="lead">Fidget keychains that <strong>click</strong> — one satisfying button per letter. Pick a shape, type a name, and choose exactly how many letters it has.</p>
-
-          <div class="field">
-            <label>Layout</label>
-            <div class="layout-row" data-layout-row>
-              <button class="layout-btn" type="button" data-layout="row" aria-pressed="true">Straight Row<span>2–12 buttons</span></button>
-              <button class="layout-btn" type="button" data-layout="2x2" aria-pressed="false">2×2 Grid<span>4 buttons</span></button>
-              <button class="layout-btn" type="button" data-layout="3x3" aria-pressed="false">3×3 Grid<span>9 buttons</span></button>
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="clicker-text">Your Letters <span class="char-count" data-clicker-count>0 / 12</span></label>
-            <input id="clicker-text" data-clicker-input maxlength="12" placeholder="Type here... e.g. GIO" autocomplete="off" />
-          </div>
-
-          <div class="field">
-            <label>Button Color</label>
-            <div class="swatch-row" data-swatch-row>
-              <button class="swatch" type="button" style="--sw:#00E5FF" data-color="#00E5FF" data-color-name="Cyan" aria-pressed="true" aria-label="Cyan"></button>
-              <button class="swatch" type="button" style="--sw:#FF2BD6" data-color="#FF2BD6" data-color-name="Magenta" aria-pressed="false" aria-label="Magenta"></button>
-              <button class="swatch" type="button" style="--sw:#B6FF00" data-color="#B6FF00" data-color-name="Lime" aria-pressed="false" aria-label="Lime"></button>
-              <button class="swatch" type="button" style="--sw:#FF8A00" data-color="#FF8A00" data-color-name="Orange" aria-pressed="false" aria-label="Orange"></button>
-              <button class="swatch" type="button" style="--sw:#F4F4F5" data-color="#F4F4F5" data-color-name="White" aria-pressed="false" aria-label="White"></button>
-            </div>
-          </div>
-        </div>
-
-        <div class="clicker-stage">
-          <span class="hint">Live preview — go ahead, click the buttons</span>
-          <div class="clicker-preview" data-clicker-preview aria-live="polite">
-            <span class="empty">Your clicker shows up here...</span>
-          </div>
-          <div class="clicker-summary">
-            <div class="clicker-price">
-              <span class="amt" data-clicker-price>$0</span>
-              <span class="breakdown">50&cent; per available letter</span>
-            </div>
-            <button class="btn primary" type="button" data-clicker-add disabled>Add to Cart</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="about-team" id="about">
       <div class="section-head">
         <h2>Meet the Team</h2>
@@ -1885,7 +2751,19 @@
       </div>
       <div class="faq-item">
         <button class="faq-toggle" type="button" aria-expanded="false">How do custom clickers work?</button>
-        <p class="faq-answer">Each available letter on a clicker is its own clicky button and costs 50&cent;. Pick a shape — a straight row (2–12 buttons), a 2×2 grid (4 buttons), or a 3×3 grid (9 buttons) — then type your letters and pick a color. Add it to your cart and the exact text, layout, and color come through with your order.</p>
+        <p class="faq-answer">Every letter is its own clicky button. Pick a layout — a straight row (2–12 buttons), a 2×2 grid (4 buttons), or a 3×3 grid (9 buttons) — then type your letters, choose a color, and add any add-ons. The length is set automatically by how many buttons you use: Mini is 2–4, Standard is 5–8, Long is 9–12. The price updates live as you build, and the exact text, layout, color, and add-ons come through with your order.</p>
+      </div>
+      <div class="faq-item">
+        <button class="faq-toggle" type="button" aria-expanded="false">How do event packages work?</button>
+        <p class="faq-answer">Event packages are priced <strong>per person</strong>, and everyone gets their own clicker with their own name on it. Small events (5–10 people) are $12 each, medium events (11–25) are $10 each, and large events (26+) are $8 each — so a 30-person team is $240. Send us your headcount and date through the quote form, then a list of names once you have it. Events are quoted rather than checked out online, because we confirm your name list and timeline first.</p>
+      </div>
+      <div class="faq-item">
+        <button class="faq-toggle" type="button" aria-expanded="false">Why is there a 10-clicker limit?</button>
+        <p class="faq-answer">We're a student robotics team building these by hand between school and practice, so the 10-per-person cap keeps turnaround times honest for everyone. If you need a class set, team order, or event favors beyond 10, use the custom request form and we'll quote a bulk order with a proper timeline.</p>
+      </div>
+      <div class="faq-item">
+        <button class="faq-toggle" type="button" aria-expanded="false">What are theme packs?</button>
+        <p class="faq-answer">A theme pack ($6) restyles your clicker around a subject — sports, gaming, holiday, school spirit, healthcare, or music — with themed button faces and a matching color scheme. Tell us the theme in the notes at checkout, or send a reference image through the custom request form.</p>
       </div>
       <div class="faq-item">
         <button class="faq-toggle" type="button" aria-expanded="false">Can I pick colors?</button>
@@ -1974,6 +2852,7 @@
     </footer>
   </main>
   <script src="catalog.js"></script>
+  <script src="clicker-pricing.js"></script>
   <script>
     const shopCategories = ['Flexi Dragons', 'Figures & Critters', 'Sculptures & Decor'];
     const shopGrids = document.querySelectorAll('#shop .product-grid');
@@ -2038,13 +2917,20 @@
         return items;
       }, {});
 
-      cartItems.innerHTML = Object.values(totals).map(item => `
+      const rows = Object.values(totals);
+      const orderTotal = rows.reduce((sum, item) => sum + item.price * item.qty, 0);
+
+      cartItems.innerHTML = rows.map(item => `
         <div class="cart-row">
           <span>${item.name} x${item.qty}</span>
-          <strong>$${item.price * item.qty}+</strong>
+          <strong>$${(item.price * item.qty).toFixed(2)}</strong>
         </div>
-      `).join('');
-
+      `).join('') + `
+        <div class="cart-row" style="border-bottom:0; padding-top:4px">
+          <span style="font-family:var(--display); text-transform:uppercase; letter-spacing:1px">Subtotal</span>
+          <strong style="color:var(--lime)">$${orderTotal.toFixed(2)}</strong>
+        </div>
+      `;
     }
 
     function openRequestForm() {
@@ -2090,6 +2976,7 @@
     document.querySelector('[data-clear-cart]').addEventListener('click', () => {
       cart.length = 0;
       renderCart();
+      renderClicker();
       showToast('Cart cleared.');
     });
 
@@ -2123,6 +3010,7 @@
     });
 
     requestOpen.addEventListener('click', openRequestForm);
+
 
     document.querySelectorAll('[data-request-close]').forEach(button => {
       button.addEventListener('click', closeRequestForm);
@@ -2173,8 +3061,137 @@
     });
 
     /* ---- Custom Clicker builder ---- */
-    const CLICKER_BASE = 0;
-    const CLICKER_PER_CHAR = 0.5;
+    const PRICING = window.GLITCH_CLICKERS;
+    const money = cents => `$${(cents / 100).toFixed(2)}`;
+
+    /* ---- Event packages ---- */
+    (function renderEventPackages() {
+      const grid = document.querySelector('[data-event-grid]');
+      const input = document.querySelector('[data-event-people]');
+      const result = document.querySelector('[data-event-result]');
+      const cta = document.querySelector('[data-event-cta]');
+      if (!grid) return;
+
+      grid.innerHTML = PRICING.eventTiers.map(tier => {
+        const range = tier.maxPeople === null
+          ? `${tier.minPeople}+ people`
+          : `${tier.minPeople}–${tier.maxPeople} people`;
+        const low = tier.perPerson * tier.minPeople;
+        const totals = tier.maxPeople === null
+          ? `${money(low)}+ total`
+          : `${money(low)}–${money(tier.perPerson * tier.maxPeople)} total`;
+        const featured = tier.id === 'medium';
+        return `
+          <article class="event-card${featured ? ' featured' : ''}">
+            ${featured ? '<span class="badge">Most Booked</span>' : ''}
+            <div class="people">${range}</div>
+            <h3>${tier.name}</h3>
+            <div class="rate">${money(tier.perPerson)}<span> / person</span></div>
+            <div class="range-total">${totals}</div>
+            <p class="tag-copy">${tier.tagline}</p>
+            <div class="includes">${tier.includes}</div>
+            <a class="btn ${featured ? 'primary' : 'secondary'}" href="#quote" data-event-pick="${tier.id}">Request a Quote</a>
+          </article>
+        `;
+      }).join('');
+
+      function renderCalc() {
+        const people = Math.floor(Number(input.value) || 0);
+        const quote = PRICING.eventQuote(people);
+
+        if (!quote) {
+          result.innerHTML = `
+            <div class="headline">Minimum ${PRICING.EVENT_MIN_PEOPLE} people</div>
+            <div class="detail">Fewer than that? Buy <a href="#clickers" style="color:var(--cyan)">single clickers</a> instead — up to 10 per person.</div>`;
+          cta.textContent = 'Ask Us Anyway';
+          return;
+        }
+
+        const savings = quote.save
+          ? ` <em>You save ${money(quote.save)} vs. the small-event rate.</em>`
+          : '';
+        result.innerHTML = `
+          <div class="headline">${money(quote.total)} for ${quote.people} people</div>
+          <div class="detail"><strong>${quote.tier.name}</strong> — ${money(quote.perPerson)} per person.${savings}</div>`;
+        cta.textContent = `Get This Quote`;
+      }
+
+      input.addEventListener('input', renderCalc);
+
+      // Clicking a package card pre-fills the quote form with that event size.
+      document.querySelectorAll('[data-event-pick]').forEach(link => {
+        link.addEventListener('click', () => {
+          const tier = PRICING.eventTierById[link.dataset.eventPick];
+          const interest = document.querySelector('#inq-interest');
+          const qty = document.querySelector('#inq-quantity');
+          if (interest) interest.value = 'Event package';
+          if (qty) qty.value = String(tier.minPeople);
+          input.value = String(tier.minPeople);
+          renderCalc();
+        });
+      });
+
+      cta.addEventListener('click', () => {
+        const people = Math.floor(Number(input.value) || 0);
+        const interest = document.querySelector('#inq-interest');
+        const qty = document.querySelector('#inq-quantity');
+        if (interest) interest.value = 'Event package';
+        if (qty && people > 0) qty.value = String(people);
+      });
+
+      renderCalc();
+    })();
+
+    /* Render the pricing tables from the same data the server charges from. */
+    (function renderPricingTables() {
+      const tierGrid = document.querySelector('[data-tier-grid]');
+      const addonGrid = document.querySelector('[data-addon-grid]');
+      if (!tierGrid || !addonGrid) return;
+
+      const best = PRICING.BULK_TIERS[0];
+
+      tierGrid.innerHTML = PRICING.sizes.map(size => {
+        const low = size.base + size.min * size.perButton;
+        const high = size.base + size.max * size.perButton;
+        // What one clicker of this size costs inside a max bundle — a real price.
+        const bulkLow = Math.round(low * (100 - best.percent) / 100);
+        const featured = size.id === 'medium';
+        return `
+          <article class="tier${featured ? ' featured' : ''}">
+            ${featured ? '<span class="badge">Most Popular</span>' : ''}
+            <h3>${size.name}</h3>
+            <div class="buttons-range">${size.min}–${size.max} buttons</div>
+            <div class="tier-price">${money(low)}–${money(high)}
+              <small>${money(size.base)} base + ${money(size.perButton)} per button</small>
+            </div>
+            <p class="tier-copy">${size.tagline}</p>
+            <div class="examples">${size.examples}</div>
+            <div class="save-badge">As low as ${money(bulkLow)} ea at ${best.min}+</div>
+            <button class="btn ${featured ? 'primary' : 'secondary'}" type="button" data-pick-size="${size.id}">Build a ${size.name}</button>
+          </article>
+        `;
+      }).join('');
+
+      const dealStrip = document.querySelector('[data-deal-strip]');
+      if (dealStrip) {
+        dealStrip.innerHTML = PRICING.BULK_TIERS.slice().reverse().map(tier => `
+          <div class="deal${tier.percent === best.percent ? ' best' : ''}">
+            <span class="qty">${tier.min === PRICING.MAX_PER_PERSON ? `${tier.min} clickers` : `${tier.min}+ clickers`}</span>
+            <span class="off">${tier.percent}% off</span>
+          </div>
+        `).join('');
+      }
+
+      addonGrid.innerHTML = PRICING.addOns.map(addOn => `
+        <div class="addon">
+          <div class="top">
+            <h4>${addOn.name}</h4>
+            <span class="cost">+${money(addOn.price)}${addOn.perUnit ? ' ea' : ''}</span>
+          </div>
+          <p>${addOn.blurb}</p>
+        </div>
+      `).join('');
+    })();
 
     const CLICKER_LAYOUTS = {
       row: { name: 'Straight Row', min: 2, max: 12, cols: 0 },
@@ -2187,9 +3204,45 @@
     const clickerPrice = document.querySelector('[data-clicker-price]');
     const clickerCounter = document.querySelector('[data-clicker-count]');
     const clickerAdd = document.querySelector('[data-clicker-add]');
+    const clickerBreakdown = document.querySelector('[data-clicker-breakdown]');
+    const sizeTag = document.querySelector('[data-size-tag]');
+    const priceLines = document.querySelector('[data-price-lines]');
+    const addonPicks = document.querySelector('[data-addon-picks]');
+    const qtyVal = document.querySelector('[data-qty-val]');
+    const qtyCap = document.querySelector('[data-qty-cap]');
+    const qtyUp = document.querySelector('[data-qty-up]');
+    const qtyDown = document.querySelector('[data-qty-down]');
     let clickerColor = '#00E5FF';
     let clickerColorName = 'Cyan';
     let clickerLayout = 'row';
+    let clickerQty = 1;
+    const selectedAddOns = {};
+
+    /** How many custom clickers are already in the cart (the 10-per-person cap). */
+    function clickersInCart() {
+      return cart.filter(item => item.id === 'custom-clicker').length;
+    }
+
+    function remainingClickerSlots() {
+      return Math.max(0, PRICING.MAX_PER_PERSON - clickersInCart());
+    }
+
+    addonPicks.innerHTML = PRICING.addOns.map(addOn => {
+      const unitPicker = addOn.perUnit
+        ? `<select data-addon-units="${addOn.id}" aria-label="${addOn.name} quantity">${
+            Array.from({ length: addOn.maxUnits }, (_, i) =>
+              `<option value="${i + 1}">${i + 1}</option>`).join('')
+          }</select>`
+        : '';
+      return `
+        <label class="pick" data-pick="${addOn.id}">
+          <input type="checkbox" data-addon-toggle="${addOn.id}" />
+          <span class="pick-name">${addOn.name}</span>
+          ${unitPicker}
+          <span class="pick-cost">+${money(addOn.price)}${addOn.perUnit ? ' ea' : ''}</span>
+        </label>
+      `;
+    }).join('');
 
     function clickerChars() {
       const layout = CLICKER_LAYOUTS[clickerLayout];
@@ -2240,17 +3293,122 @@
         }
       }
 
-      const price = count ? CLICKER_BASE + count * CLICKER_PER_CHAR : 0;
-      clickerPrice.textContent = `$${price.toFixed(2)}`;
-      clickerAdd.disabled = count < layout.min;
-      if (count >= layout.min) {
-        clickerAdd.textContent = 'Add to Cart';
+      const quote = PRICING.quote(count, selectedAddOns, clickerQty);
+      const slotsLeft = remainingClickerSlots();
+
+      if (quote) {
+        sizeTag.textContent = `${quote.size.name} · ${count} buttons`;
+        sizeTag.classList.remove('none');
+      } else {
+        sizeTag.textContent = `Type at least ${PRICING.MIN_BUTTONS} letters`;
+        sizeTag.classList.add('none');
+      }
+
+      if (!quote) {
+        priceLines.innerHTML = '';
+        clickerPrice.textContent = '$0.00';
+        clickerBreakdown.textContent = 'Pick a size to see your price';
+      } else {
+        const rows = [
+          `<div class="row"><span>${quote.size.name} base</span><span>${money(quote.size.base)}</span></div>`,
+          `<div class="row"><span>${count} buttons × ${money(quote.size.perButton)}</span><span>${money(count * quote.size.perButton)}</span></div>`,
+          ...quote.addOns.map(line =>
+            `<div class="row sub"><span>+ ${line.name}${line.units > 1 ? ` ×${line.units}` : ''}</span><span>${money(line.amount)}</span></div>`)
+        ];
+        if (quote.addOnBundleSave) {
+          rows.push(`<div class="row sub" style="color:var(--lime)"><span>${quote.addOnBundlePercent}% add-on bundle</span><span>−${money(quote.addOnBundleSave)}</span></div>`);
+        }
+        if (clickerQty > 1) {
+          rows.push(`<div class="row sub"><span>× ${clickerQty} clickers</span><span>${money(quote.unitTotal * clickerQty)}</span></div>`);
+        }
+        if (quote.bulkSave) {
+          rows.push(`<div class="row sub" style="color:var(--lime)"><span>${quote.bulkPercent}% bundle discount</span><span>−${money(quote.bulkSave)}</span></div>`);
+        }
+        priceLines.innerHTML = rows.join('');
+
+        clickerPrice.innerHTML = quote.save
+          ? `<span class="was">${money(quote.listTotal)}</span>${money(quote.total)}`
+          : money(quote.total);
+
+        const each = clickerQty > 1 ? `${money(quote.unitCharged)} each · ` : '';
+        clickerBreakdown.innerHTML = quote.save
+          ? `${each}<strong style="color:var(--lime)">You save ${money(quote.save)} (${quote.savePercent}%)</strong>`
+          : `${each}${quote.size.name} size · ${count} buttons`;
+      }
+
+
+      // quantity controls respect the per-person cap
+      qtyVal.textContent = String(clickerQty);
+      qtyUp.disabled = clickerQty >= slotsLeft;
+      qtyDown.disabled = clickerQty <= 1;
+      // Prefer nudging toward the next discount tier over showing the raw cap.
+      const nextTier = PRICING.BULK_TIERS.slice().reverse().find(tier => tier.min > clickerQty);
+      if (slotsLeft === 0) {
+        qtyCap.textContent = 'Limit reached — 10 in cart';
+      } else if (quote && nextTier && nextTier.min <= slotsLeft) {
+        qtyCap.textContent = `Add ${nextTier.min - clickerQty} more → ${nextTier.percent}% off`;
+      } else {
+        qtyCap.textContent = `${slotsLeft} of ${PRICING.MAX_PER_PERSON} left`;
+      }
+
+      const enoughLetters = count >= layout.min && Boolean(quote);
+      clickerAdd.disabled = !enoughLetters || slotsLeft === 0;
+
+      if (slotsLeft === 0) {
+        clickerAdd.textContent = 'Limit 10 per person';
+      } else if (enoughLetters) {
+        clickerAdd.textContent = clickerQty > 1 ? `Add ${clickerQty} to Cart` : 'Add to Cart';
       } else if (layout.cols) {
         clickerAdd.textContent = `Fill all ${layout.max} slots (${count} / ${layout.max})`;
       } else {
         clickerAdd.textContent = `Add to Cart (min ${layout.min})`;
       }
     }
+
+    addonPicks.addEventListener('change', event => {
+      const toggle = event.target.closest('[data-addon-toggle]');
+      const units = event.target.closest('[data-addon-units]');
+      const id = toggle ? toggle.dataset.addonToggle : units && units.dataset.addonUnits;
+      if (!id) return;
+
+      const row = addonPicks.querySelector(`[data-pick="${id}"]`);
+      const checkbox = row.querySelector('[data-addon-toggle]');
+      const unitSelect = row.querySelector('[data-addon-units]');
+
+      // Changing the unit dropdown implies you want the add-on.
+      if (units && !checkbox.checked) checkbox.checked = true;
+
+      if (checkbox.checked) {
+        selectedAddOns[id] = unitSelect ? Number(unitSelect.value) : true;
+      } else {
+        delete selectedAddOns[id];
+      }
+      row.classList.toggle('on', checkbox.checked);
+      renderClicker();
+    });
+
+    qtyUp.addEventListener('click', () => {
+      if (clickerQty < remainingClickerSlots()) clickerQty += 1;
+      renderClicker();
+    });
+
+    qtyDown.addEventListener('click', () => {
+      if (clickerQty > 1) clickerQty -= 1;
+      renderClicker();
+    });
+
+    document.querySelectorAll('[data-pick-size]').forEach(button => {
+      button.addEventListener('click', () => {
+        const size = PRICING.sizeById[button.dataset.pickSize];
+        document.querySelector('#clickers').scrollIntoView({ behavior: 'smooth' });
+        // A grid layout would lock the button count, so size shopping starts as a row.
+        if (clickerLayout !== 'row') {
+          document.querySelector('[data-layout="row"]').click();
+        }
+        clickerInput.focus();
+        showToast(`${size.name}: ${size.min}–${size.max} buttons. Type your letters to see the price.`);
+      });
+    });
 
     clickerInput.addEventListener('input', () => {
       clickerInput.value = clickerInput.value.replace(/[^a-z]/gi, '').toUpperCase();
@@ -2298,22 +3456,94 @@
       const layout = CLICKER_LAYOUTS[clickerLayout];
       const chars = clickerChars();
       if (chars.length < layout.min) return;
-      const text = chars.join('');
-      cart.push({
-        id: 'custom-clicker',
-        name: `Custom Clicker "${text.toUpperCase()}" (${clickerColorName}, ${layout.name}, ${chars.length} buttons)`,
-        price: CLICKER_BASE + chars.length * CLICKER_PER_CHAR,
-        configuration: {
-          text: text.toUpperCase(),
-          color: clickerColorName,
-          layout: layout.name
-        }
-      });
+
+      const wanted = Math.min(clickerQty, remainingClickerSlots());
+      if (wanted < 1) {
+        showToast(`Limit ${PRICING.MAX_PER_PERSON} custom clickers per person.`);
+        return;
+      }
+
+      const quote = PRICING.quote(chars.length, selectedAddOns, wanted);
+      if (!quote) return;
+
+      const text = chars.join('').toUpperCase();
+      const addOnNames = quote.addOns
+        .map(line => (line.units > 1 ? `${line.name} ×${line.units}` : line.name))
+        .join(', ');
+      const label = `${quote.size.name} Clicker "${text}" (${clickerColorName}, ${layout.name}, ${chars.length} buttons${addOnNames ? `, ${addOnNames}` : ''})`;
+
+      for (let i = 0; i < wanted; i++) {
+        cart.push({
+          id: 'custom-clicker',
+          name: label,
+          price: quote.unitCharged / 100,
+          configuration: {
+            text,
+            color: clickerColorName,
+            layout: layout.name,
+            size: quote.size.id,
+            addOns: { ...selectedAddOns }
+          }
+        });
+      }
+
       renderCart();
-      showToast(`Custom Clicker "${text.toUpperCase()}" added to cart.`);
+      clickerQty = 1;
+      renderClicker();
+      showToast(
+        quote.save
+          ? `${wanted} × ${quote.size.name} Clicker "${text}" added — ${money(quote.total)}, you saved ${money(quote.save)}.`
+          : `${quote.size.name} Clicker "${text}" added — ${money(quote.total)}.`
+      );
     });
 
     renderClicker();
+
+    /* ---- Inquiry form → /api/inquiries ---- */
+    const inquiryForm = document.querySelector('[data-inquiry-form]');
+    const inquiryStatus = document.querySelector('[data-inquiry-status]');
+    const inquirySubmit = document.querySelector('[data-inquiry-submit]');
+
+    function setInquiryStatus(message, kind) {
+      inquiryStatus.textContent = message;
+      inquiryStatus.className = `form-status show ${kind}`;
+    }
+
+    inquiryForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      const payload = Object.fromEntries(new FormData(inquiryForm).entries());
+
+      if (!payload.name || payload.name.trim().length < 2) return setInquiryStatus('Please enter your name.', 'err');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(payload.email || '')) return setInquiryStatus('Please enter a valid email address.', 'err');
+      if (!payload.interest) return setInquiryStatus('Please choose what you are interested in.', 'err');
+      if (!payload.message || payload.message.trim().length < 5) return setInquiryStatus('Please tell us a little about what you need.', 'err');
+
+      inquirySubmit.disabled = true;
+      inquirySubmit.textContent = 'Sending...';
+      setInquiryStatus('Sending your request...', 'ok');
+
+      try {
+        const response = await fetch('/api/inquiries', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          setInquiryStatus(result.error || 'Something went wrong. Please try again.', 'err');
+        } else {
+          inquiryForm.reset();
+          setInquiryStatus('Got it! We received your request and will reply within 48 hours.', 'ok');
+          showToast('Request sent — we will be in touch.');
+        }
+      } catch (error) {
+        setInquiryStatus('We could not reach the server. Please check your connection and try again.', 'err');
+      } finally {
+        inquirySubmit.disabled = false;
+        inquirySubmit.textContent = 'Send Request';
+      }
+    });
 
     document.querySelectorAll('.faq-toggle').forEach(button => {
       button.addEventListener('click', () => {
