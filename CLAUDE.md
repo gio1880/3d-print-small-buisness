@@ -1,3 +1,5 @@
+@AGENTS.md
+
 # CLAUDE.md
 
 Context for AI assistants (Claude, Claude Code) working on the GlitchPrints website.
