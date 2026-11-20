@@ -5,6 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GLITCH PRINTS | 3D Printed Goods</title>
   <link rel="canonical" href="https://glitchprints.com/">
+  <script>
+    // Measure the public storefront only. Exclude URL parameters and referrer paths.
+    if (location.origin === "https://glitchprints.com" && !location.search) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-DPRDZLX8X3", {
+        page_location: "https://glitchprints.com/",
+        page_referrer: document.referrer ? new URL(document.referrer).origin : "",
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false
+      });
+      const googleTag = document.createElement("script");
+      googleTag.async = true;
+      googleTag.src = "https://www.googletagmanager.com/gtag/js?id=G-DPRDZLX8X3";
+      document.head.append(googleTag);
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
