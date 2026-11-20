@@ -148,6 +148,8 @@ app.post('/api/create-checkout-session', async (request, response) => {
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.get(['/', '/index.html'], (_request, response) => response.sendFile(path.join(__dirname, 'index.html')));
+app.get('/robots.txt', (_request, response) => response.sendFile(path.join(__dirname, 'robots.txt')));
+app.get('/sitemap.xml', (_request, response) => response.sendFile(path.join(__dirname, 'sitemap.xml')));
 app.get('/catalog.js', (_request, response) => response.sendFile(path.join(__dirname, 'catalog.js')));
 app.get('/success.html', (_request, response) => response.sendFile(path.join(__dirname, 'success.html')));
 app.get('/points-worksheet.html', (_request, response) => response.sendFile(path.join(__dirname, 'points-worksheet.html')));
